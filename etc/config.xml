@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <system>
+            <smtp>
+                <dummy>0</dummy>
+            </smtp>
+            <eriocnemis_email_log>
+                <enabled>1</enabled>
+                <clean>0</clean>
+                <days>30</days>
+                <last_clean>Never</last_clean>
+            </eriocnemis_email_log>
+        </system>
+    </default>
+</config>
