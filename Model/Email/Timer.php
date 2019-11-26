@@ -6,7 +6,7 @@
 namespace Eriocnemis\Email\Model\Email;
 
 /**
- * Timer
+ * Timer model
  */
 class Timer
 {

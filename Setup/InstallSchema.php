@@ -13,7 +13,7 @@ use Magento\Framework\Setup\SchemaSetupInterface;
 use Eriocnemis\Email\Model\Constant;
 
 /**
- * Install schema
+ * DB install schema
  */
 class InstallSchema implements InstallSchemaInterface
 {
