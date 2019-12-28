@@ -32,6 +32,8 @@ use Eriocnemis\Email\Model\ResourceModel\Email as EmailResource;
  * @method string getError()
  * @method Email setStatus(string $status)
  * @method string getStatus()
+ * @method Email setDummy(int $dummy)
+ * @method int getDummy()
  * @method Email setDuration(string $duration)
  * @method string getDuration()
  * @method Email setCreatedAt(string $createdAt)
