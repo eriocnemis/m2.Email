@@ -79,7 +79,7 @@ class Converter
      */
     protected function getBody(Message $message)
     {
-        $body = '';
+        $body = $message->getBodyText();
         /** @var \Zend\Mail\Header\HeaderInterface $header */
         $header = $message->getHeaders()->get('contenttransferencoding');
 
