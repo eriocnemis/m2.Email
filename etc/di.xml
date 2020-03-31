@@ -11,6 +11,30 @@
     <type name="Magento\Framework\Mail\TransportInterface">
         <plugin name="eriocnemis_email" type="Eriocnemis\Email\Plugin\Framework\Mail\TransportInterfacePlugin" sortOrder="1"/>
     </type>
+    <type name="Eriocnemis\Email\Model\Transport\Config">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="sendmail" xsi:type="array">
+                    <item name="label" xsi:type="string" translatable="true">Sendmail</item>
+                    <item name="class" xsi:type="string">Zend\Mail\Transport\Sendmail</item>
+                </item>
+                <item name="smtp" xsi:type="array">
+                    <item name="label" xsi:type="string" translatable="true">Smtp</item>
+                    <item name="class" xsi:type="string">Zend\Mail\Transport\Smtp</item>
+                </item>
+                <item name="file" xsi:type="array">
+                    <item name="label" xsi:type="string" translatable="true">To File</item>
+                    <item name="class" xsi:type="string">Zend\Mail\Transport\File</item>
+                    <item name="dummy" xsi:type="boolean">true</item>
+                </item>
+                <item name="memory" xsi:type="array">
+                    <item name="label" xsi:type="string" translatable="true">In Memory</item>
+                    <item name="class" xsi:type="string">Zend\Mail\Transport\InMemory</item>
+                    <item name="dummy" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
     <!-- ui grid -->
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>

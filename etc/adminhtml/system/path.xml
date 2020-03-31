@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <!-- return path setting -->
+    <field id="set_return_path" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Set Return-Path</label>
+        <source_model>Magento\Config\Model\Config\Source\Yesnocustom</source_model>
+    </field>
+    <field id="return_path_email" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Return-Path Email</label>
+        <validate>validate-email</validate>
+        <backend_model>Magento\Config\Model\Config\Backend\Email\Address</backend_model>
+        <depends>
+            <field id="set_return_path">2</field>
+        </depends>
+    </field>
+</include>

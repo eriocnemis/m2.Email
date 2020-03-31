@@ -8,44 +8,19 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
+        <section id="trans_email">
+            <!-- include general contact setting -->
+            <include path="Eriocnemis_Email::system/email/general.xml"/>
+            <!-- include sales representative contact setting -->
+            <include path="Eriocnemis_Email::system/email/sales.xml"/>
+            <!-- include support contact setting -->
+            <include path="Eriocnemis_Email::system/email/support.xml"/>
+            <!-- include custom contact setting -->
+            <include path="Eriocnemis_Email::system/email/custom.xml"/>
+        </section>
         <section id="system">
-            <group id="smtp">
-                <field id="dummy" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Dummy mode</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <depends>
-                        <field id="disable">0</field>
-                    </depends>
-                </field>
-            </group>
-            <group id="eriocnemis_email_log" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Mail Log Settings</label>
-                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
-                    <label>Log Sending Email</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-                <field id="clean" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
-                    <label>Enable Log Cleaning</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                    <depends>
-                        <field id="enabled">1</field>
-                    </depends>
-                </field>
-                <field id="days" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
-                    <label>Save Log, Days</label>
-                    <depends>
-                        <field id="enabled">1</field>
-                        <field id="clean">1</field>
-                    </depends>
-                </field>
-                <field id="last_clean" translate="label" type="label" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Last Clean</label>
-                    <depends>
-                        <field id="enabled">1</field>
-                        <field id="clean">1</field>
-                    </depends>
-                </field>
-            </group>
+            <!-- include email log setting -->
+            <include path="Eriocnemis_Email::system/log.xml"/>
         </section>
     </system>
 </config>

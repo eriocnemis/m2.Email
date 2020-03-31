@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <!-- email log setting -->
+    <group id="eriocnemis_email_log" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Mail Log Settings</label>
+        <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+            <label>Log Sending Email</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+        </field>
+        <field id="clean" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+            <label>Enable Log Cleaning</label>
+            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+            <depends>
+                <field id="enabled">1</field>
+            </depends>
+        </field>
+        <field id="days" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="1">
+            <label>Save Log, Days</label>
+            <depends>
+                <field id="enabled">1</field>
+                <field id="clean">1</field>
+            </depends>
+        </field>
+        <field id="last_clean" translate="label" type="label" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Last Clean</label>
+            <depends>
+                <field id="enabled">1</field>
+                <field id="clean">1</field>
+            </depends>
+        </field>
+    </group>
+</include>

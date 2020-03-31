@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <!-- smtp setting -->
+    <!-- include smtp connection setting -->
+    <include path="Eriocnemis_Email::system/transport/smtp/connection.xml"/>
+    <!-- include smtp auth setting -->
+    <include path="Eriocnemis_Email::system/transport/smtp/auth.xml"/>
+    <!-- include return path setting -->
+    <include path="Eriocnemis_Email::system/path.xml"/>
+</include>
