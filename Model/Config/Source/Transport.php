@@ -5,8 +5,8 @@
  */
 namespace Eriocnemis\Email\Model\Config\Source;
 
-use \Magento\Framework\Option\ArrayInterface;
-use \Eriocnemis\Email\Model\Transport\Config;
+use Magento\Framework\Option\ArrayInterface;
+use Eriocnemis\Email\Model\Transport\Config;
 
 /**
  * Transport source

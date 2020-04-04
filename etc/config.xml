@@ -8,55 +8,68 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
-        <system>
-            <trans_email>
-                <ident_general>
-                    <transport>sendmail</transport>
-                    <port>465</port>
-                    <ssl>ssl</ssl>
-                    <auth>login</auth>
-                    <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                    <set_return_path>0</set_return_path>
-                </ident_general>
-                <ident_sales>
-                    <transport>sendmail</transport>
-                    <port>465</port>
-                    <ssl>ssl</ssl>
-                    <auth>login</auth>
-                    <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                    <set_return_path>0</set_return_path>
-                </ident_sales>
-                <ident_support>
-                    <transport>sendmail</transport>
-                    <port>465</port>
-                    <ssl>ssl</ssl>
-                    <auth>login</auth>
-                    <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                    <set_return_path>0</set_return_path>
-                </ident_support>
-                <ident_custom1>
-                    <transport>sendmail</transport>
-                    <port>465</port>
-                    <ssl>ssl</ssl>
-                    <auth>login</auth>
-                    <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                    <set_return_path>0</set_return_path>
-                </ident_custom1>
-                <ident_custom2>
-                    <transport>sendmail</transport>
-                    <port>465</port>
-                    <ssl>ssl</ssl>
-                    <auth>login</auth>
-                    <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                    <set_return_path>0</set_return_path>
-                </ident_custom2>
-            </trans_email>
-            <eriocnemis_email_log>
-                <enabled>1</enabled>
-                <clean>0</clean>
-                <days>30</days>
-                <last_clean>Never</last_clean>
-            </eriocnemis_email_log>
-        </system>
+        <trans_email>
+            <ident_general>
+                <transport>file</transport>
+                <port>465</port>
+                <ssl>ssl</ssl>
+                <auth>login</auth>
+                <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <path>email</path>
+                <prefix>message</prefix>
+                <extension>eml</extension>
+                <set_return_path>1</set_return_path>
+            </ident_general>
+            <ident_sales>
+                <transport>sendmail</transport>
+                <port>465</port>
+                <ssl>ssl</ssl>
+                <auth>login</auth>
+                <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <path>email</path>
+                <prefix>message</prefix>
+                <extension>eml</extension>
+                <set_return_path>0</set_return_path>
+            </ident_sales>
+            <ident_support>
+                <transport>file</transport>
+                <port>465</port>
+                <ssl>ssl</ssl>
+                <auth>login</auth>
+                <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <path>email</path>
+                <prefix>message</prefix>
+                <extension>eml</extension>
+                <set_return_path>0</set_return_path>
+            </ident_support>
+            <ident_custom1>
+                <transport>sendmail</transport>
+                <port>465</port>
+                <ssl>ssl</ssl>
+                <auth>login</auth>
+                <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <path>email</path>
+                <prefix>message</prefix>
+                <extension>eml</extension>
+                <set_return_path>0</set_return_path>
+            </ident_custom1>
+            <ident_custom2>
+                <transport>sendmail</transport>
+                <port>465</port>
+                <ssl>ssl</ssl>
+                <auth>login</auth>
+                <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+                <path>email</path>
+                <prefix>message</prefix>
+                <extension>eml</extension>
+                <set_return_path>0</set_return_path>
+            </ident_custom2>
+        </trans_email>
+        <eriocnemis_email_log>
+            <enabled>1</enabled>
+            <clean>0</clean>
+            <days>30</days>
+            <last_clean>Never</last_clean>
+        </eriocnemis_email_log>
     </default>
 </config>

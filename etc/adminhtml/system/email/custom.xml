@@ -11,17 +11,17 @@
     <group id="ident_custom1">
         <!-- include transport setting -->
         <include path="Eriocnemis_Email::system/transport.xml"/>
-        <!-- include sendmail setting -->
-        <include path="Eriocnemis_Email::system/transport/sendmail.xml"/>
         <!-- include smtp setting -->
         <include path="Eriocnemis_Email::system/transport/smtp.xml"/>
+        <!-- include file setting -->
+        <include path="Eriocnemis_Email::system/transport/file.xml"/>
     </group>
     <group id="ident_custom2">
         <!-- include transport contact field -->
         <include path="Eriocnemis_Email::system/transport.xml"/>
-        <!-- include sendmail setting -->
-        <include path="Eriocnemis_Email::system/transport/sendmail.xml"/>
         <!-- include smtp setting -->
         <include path="Eriocnemis_Email::system/transport/smtp.xml"/>
+        <!-- include file setting -->
+        <include path="Eriocnemis_Email::system/transport/file.xml"/>
     </group>
 </include>

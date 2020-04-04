@@ -5,7 +5,7 @@
  */
 namespace Eriocnemis\Email\Model\Config\Source;
 
-use \Magento\Framework\Option\ArrayInterface;
+use Magento\Framework\Option\ArrayInterface;
 
 /**
  * Auth source

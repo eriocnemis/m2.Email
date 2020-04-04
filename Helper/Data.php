@@ -14,11 +14,6 @@ use Magento\Framework\App\Helper\AbstractHelper;
 class Data extends AbstractHelper
 {
     /**
-     * Dummy config path
-     */
-    const XML_DUMMY = 'system/smtp/dummy';
-
-    /**
      * Log enabled config path
      */
     const XML_ENABLED = 'system/eriocnemis_email_log/enabled';
@@ -53,17 +48,6 @@ class Data extends AbstractHelper
     public function isCleanEnabled($storeId = null)
     {
         return $this->isSetFlag(static::XML_CLEAN_ENABLED, $storeId);
-    }
-
-    /**
-     * Check dummy mode
-     *
-     * @param string $storeId
-     * @return bool
-     */
-    public function isDummy($storeId = null)
-    {
-        return $this->isSetFlag(static::XML_DUMMY, $storeId);
     }
 
     /**
