@@ -105,7 +105,7 @@ class Transport implements TransportInterface
     /**
      * Retrieve transport
      *
-     * @return \Zend\Mail\Transport\TransportInterface
+     * @return \Eriocnemis\Email\Model\Transport\TransportInterface
      */
     private function getTransport()
     {

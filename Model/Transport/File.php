@@ -119,7 +119,7 @@ class File extends TransportAbstract
             '%s_%u_%u.%s',
             trim($this->identity->getConfigValue(self::XML_CONFIG_PREFIX)),
             time(),
-            mt_rand(),
+            random_int(1, PHP_INT_MAX),
             trim($this->identity->getConfigValue(self::XML_CONFIG_EXTENSION), '.')
         );
     }
@@ -127,7 +127,7 @@ class File extends TransportAbstract
     /**
      * Retrieve email storage path
      *
-     * @return array
+     * @return string
      */
     private function getPath()
     {
@@ -142,7 +142,7 @@ class File extends TransportAbstract
     /**
      * Create an instance of directory with write permissions
      *
-     * @return ReadInterface
+     * @return WriteInterface
      */
     private function getDirectory()
     {
