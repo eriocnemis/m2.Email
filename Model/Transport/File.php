@@ -131,12 +131,38 @@ class File extends TransportAbstract
      */
     private function getPath()
     {
-        $path = $this->identity->getConfigValue(self::XML_CONFIG_PATH);
-        /* create directory if not exist */
+        $path = $this->prepareDir(
+            $this->preparePath()
+        );
+        return $this->getDirectory()->getAbsolutePath($path);
+    }
+
+    /**
+     * Prepare email storage path
+     *
+     * @return string
+     */
+    private function preparePath()
+    {
+        return str_replace(
+            ['{{IDENTITY}}', '{{STORE}}'],
+            [$this->identity->getEmailIdentity(), $this->identity->getStoreId()],
+            $this->identity->getConfigValue(self::XML_CONFIG_PATH)
+        );
+    }
+
+    /**
+     * Prepare email dir
+     *
+     * @param string $path
+     * @return string
+     */
+    private function prepareDir(string $path)
+    {
         if (!$this->getDirectory()->isExist($path)) {
             $this->getDirectory()->create($path);
-        }
-        return $this->getDirectory()->getAbsolutePath($path);
+        };
+        return $path;
     }
 
     /**
