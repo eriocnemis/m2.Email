@@ -15,7 +15,7 @@
                 <ssl>ssl</ssl>
                 <auth>login</auth>
                 <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                <path>email</path>
+                <path>email/{{IDENTITY}}/{{STORE}}</path>
                 <prefix>message</prefix>
                 <extension>eml</extension>
                 <set_return_path>1</set_return_path>
@@ -26,7 +26,7 @@
                 <ssl>ssl</ssl>
                 <auth>login</auth>
                 <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                <path>email</path>
+                <path>email/{{IDENTITY}}/{{STORE}}</path>
                 <prefix>message</prefix>
                 <extension>eml</extension>
                 <set_return_path>0</set_return_path>
@@ -37,7 +37,7 @@
                 <ssl>ssl</ssl>
                 <auth>login</auth>
                 <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                <path>email</path>
+                <path>email/{{IDENTITY}}/{{STORE}}</path>
                 <prefix>message</prefix>
                 <extension>eml</extension>
                 <set_return_path>0</set_return_path>
@@ -48,7 +48,7 @@
                 <ssl>ssl</ssl>
                 <auth>login</auth>
                 <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                <path>email</path>
+                <path>email/{{IDENTITY}}/{{STORE}}</path>
                 <prefix>message</prefix>
                 <extension>eml</extension>
                 <set_return_path>0</set_return_path>
@@ -59,7 +59,7 @@
                 <ssl>ssl</ssl>
                 <auth>login</auth>
                 <pass backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
-                <path>email</path>
+                <path>email/{{IDENTITY}}/{{STORE}}</path>
                 <prefix>message</prefix>
                 <extension>eml</extension>
                 <set_return_path>0</set_return_path>
