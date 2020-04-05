@@ -456,6 +456,7 @@ class Storage
         $this->emailIdentity = null;
         $this->subject = null;
         $this->body = null;
+        $this->type = null;
         $this->from = null;
         $this->to = [];
         $this->cc = [];
