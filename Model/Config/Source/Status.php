@@ -5,28 +5,13 @@
  */
 namespace Eriocnemis\Email\Model\Config\Source;
 
-use Magento\Framework\Option\ArrayInterface;
 use Eriocnemis\Email\Model\Constant;
 
 /**
  * Status source
  */
-class Status implements ArrayInterface
+class Status extends AbstractSource
 {
-    /**
-     * Retrieve options as array
-     *
-     * @return array
-     */
-    public function toOptionArray()
-    {
-        return [
-            ['value' => Constant::STATUS_FAILED, 'label' => __('Failed')],
-            ['value' => Constant::STATUS_SUCCESS, 'label' => __('Success')],
-            ['value' => Constant::STATUS_PROCESS, 'label' => __('Process')]
-        ];
-    }
-
     /**
      * Retrieve options in key-value format
      *

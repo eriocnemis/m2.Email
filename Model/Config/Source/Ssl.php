@@ -5,24 +5,22 @@
  */
 namespace Eriocnemis\Email\Model\Config\Source;
 
-use Magento\Framework\Option\ArrayInterface;
-
 /**
  * Ssl source
  */
-class Ssl implements ArrayInterface
+class Ssl extends AbstractSource
 {
     /**
-     * Retrieve array of Options as Value-Label Pairs
+     * Retrieve options in key-value format
      *
      * @return array
      */
-    public function toOptionArray()
+    public function toArray()
     {
         return [
-            ['label' => __('None'), 'value' => ''],
-            ['label' => __('SSL'), 'value' => 'ssl'],
-            ['label' => __('TLS'), 'value' => 'tls'],
+            '' => __('None'),
+            'ssl' => __('SSL'),
+            'tls' => __('TLS')
         ];
     }
 }

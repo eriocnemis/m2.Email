@@ -225,7 +225,7 @@
         </column>
         <column name="type">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Eriocnemis\Email\Model\Config\Source\Template\Type</item>
+                <item name="options" xsi:type="object">Eriocnemis\Email\Model\Config\Source\TemplateType</item>
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">select</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>

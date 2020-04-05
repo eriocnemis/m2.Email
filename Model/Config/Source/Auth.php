@@ -5,25 +5,23 @@
  */
 namespace Eriocnemis\Email\Model\Config\Source;
 
-use Magento\Framework\Option\ArrayInterface;
-
 /**
  * Auth source
  */
-class Auth implements ArrayInterface
+class Auth extends AbstractSource
 {
     /**
-     * Retrieve array of Options as Value-Label Pairs
+     * Retrieve options in key-value format
      *
      * @return array
      */
-    public function toOptionArray()
+    public function toArray()
     {
         return [
-            ['label' => __('Authentication Not Required'), 'value' => ''],
-            ['label' => __('Plain'), 'value' => 'plain'],
-            ['label' => __('Login'), 'value' => 'login'],
-            ['label' => __('CRAM-MD5'), 'value' => 'crammd5']
+            '' => __('Authentication Not Required'),
+            'plain' => __('Plain'),
+            'login' => __('Login'),
+            'crammd5' => __('CRAM-MD5')
         ];
     }
 }

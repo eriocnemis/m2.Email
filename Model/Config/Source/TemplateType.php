@@ -3,29 +3,15 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-namespace Eriocnemis\Email\Model\Config\Source\Template;
+namespace Eriocnemis\Email\Model\Config\Source;
 
 use Magento\Framework\App\TemplateTypesInterface;
-use Magento\Framework\Option\ArrayInterface;
 
 /**
  * Template type source
  */
-class Type implements ArrayInterface
+class TemplateType extends AbstractSource
 {
-    /**
-     * Retrieve options as array
-     *
-     * @return array
-     */
-    public function toOptionArray()
-    {
-        return [
-            ['value' => TemplateTypesInterface::TYPE_TEXT, 'label' => __('Plain Text')],
-            ['value' => TemplateTypesInterface::TYPE_HTML, 'label' => __('HTML')]
-        ];
-    }
-
     /**
      * Retrieve options in key-value format
      *

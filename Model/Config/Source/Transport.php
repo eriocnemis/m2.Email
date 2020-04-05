@@ -5,14 +5,20 @@
  */
 namespace Eriocnemis\Email\Model\Config\Source;
 
-use Magento\Framework\Option\ArrayInterface;
 use Eriocnemis\Email\Model\Transport\Config;
 
 /**
  * Transport source
  */
-class Transport implements ArrayInterface
+class Transport extends AbstractSource
 {
+    /**
+     * Source options
+     *
+     * @var array
+     */
+    private $options;
+
     /**
      * Transport config
      *
@@ -32,16 +38,17 @@ class Transport implements ArrayInterface
     }
 
     /**
-     * Retrieve config options
+     * Retrieve options in key-value format
      *
      * @return array
      */
-    public function toOptionArray()
+    public function toArray()
     {
-        $options = [];
-        foreach ($this->config->getAvailable() as $value) {
-            $options[] = ['label' => $this->config->getLabel($value), 'value' => $value];
+        if (null === $this->options) {
+            foreach ($this->config->getAvailable() as $value) {
+                $this->options[$value] = $this->config->getLabel($value);
+            }
         }
-        return $options;
+        return $this->options;
     }
 }
