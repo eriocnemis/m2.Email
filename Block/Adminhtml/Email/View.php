@@ -135,7 +135,7 @@ class View extends Container
             function ($matches) {
                 if (filter_var($matches[1], FILTER_VALIDATE_EMAIL)) {
                     return sprintf('(<a href="mailto:%s" target="_blank">%s</a>)', $matches[1], $matches[1]);
-                }                print_r($matches);
+                }
                 return $matches[0];
             },
             $this->getEmail()->getTo()
