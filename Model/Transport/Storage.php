@@ -30,49 +30,49 @@ class Storage
      *
      * @var string
      */
-    private $emailIdentity;
+    private $emailIdentity = '';
 
     /**
      * Email store identifier
      *
      * @var string
      */
-    private $storeId;
+    private $storeId = '';
 
     /**
      * Email template identifier
      *
      * @var string
      */
-    private $templateId;
+    private $templateId = '';
 
     /**
      * Email body text
      *
      * @var string
      */
-    private $body;
+    private $body = '';
 
     /**
      * Email subject
      *
      * @var string
      */
-    private $subject;
+    private $subject = '';
 
     /**
      * Email template type
      *
      * @var string
      */
-    private $type;
+    private $type = '';
 
     /**
      * Email from address
      *
      * @var string
      */
-    private $from;
+    private $from = '';
 
     /**
      * Email to addresses
@@ -100,7 +100,7 @@ class Storage
      *
      * @var string
      */
-    private $replyTo;
+    private $replyTo = '';
 
     /**
      * Initialize storage
@@ -365,7 +365,7 @@ class Storage
      * @param string $address
      * @return $this
      */
-    public function setReplyTo($email, $name = null)
+    public function setReplyTo($address, $name = null)
     {
         $this->replyTo = $this->formatAddress($address, $name);
 
@@ -451,17 +451,17 @@ class Storage
      */
     public function clean()
     {
-        $this->storeId = null;
-        $this->templateId = null;
-        $this->emailIdentity = null;
-        $this->subject = null;
-        $this->body = null;
-        $this->type = null;
-        $this->from = null;
+        $this->storeId = '';
+        $this->templateId = '';
+        $this->emailIdentity = '';
+        $this->subject = '';
+        $this->body = '';
+        $this->type = '';
+        $this->from = '';
         $this->to = [];
         $this->cc = [];
         $this->bcc = [];
-        $this->replyTo = null;
+        $this->replyTo = '';
 
         return $this;
     }

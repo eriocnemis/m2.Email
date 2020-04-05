@@ -52,7 +52,7 @@ class SenderResolverPlugin
      * Set mail from address by scopeId
      *
      * @param Subject $subject
-     * @param string $result
+     * @param array $result
      * @return string[]
      */
     public function afterResolve(Subject $subject, $result)
