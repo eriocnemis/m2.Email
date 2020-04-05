@@ -35,11 +35,11 @@ class File extends TransportAbstract
     const XML_CONFIG_EXTENSION = 'trans_email/ident_{{IDENTITY}}/extension';
 
     /**
-     * Email template identity
+     * Storage data
      *
-     * @var Identity
+     * @var Storage
      */
-    private $identity;
+    private $storage;
 
     /**
      * Write interface
@@ -58,14 +58,14 @@ class File extends TransportAbstract
     /**
      * Initialize builder
      *
-     * @param Identity $identity
+     * @param Storage $storage
      * @param Filesystem $filesystem
      */
     public function __construct(
-        Identity $identity,
+        Storage $storage,
         Filesystem $filesystem
     ) {
-        $this->identity = $identity;
+        $this->storage = $storage;
         $this->filesystem = $filesystem;
     }
 
@@ -117,10 +117,10 @@ class File extends TransportAbstract
     {
         return sprintf(
             '%s_%u_%u.%s',
-            trim($this->identity->getConfigValue(self::XML_CONFIG_PREFIX)),
+            trim($this->storage->getConfigValue(self::XML_CONFIG_PREFIX)),
             time(),
             random_int(1, PHP_INT_MAX),
-            trim($this->identity->getConfigValue(self::XML_CONFIG_EXTENSION), '.')
+            trim($this->storage->getConfigValue(self::XML_CONFIG_EXTENSION), '.')
         );
     }
 
@@ -146,8 +146,8 @@ class File extends TransportAbstract
     {
         return str_replace(
             ['{{IDENTITY}}', '{{STORE}}'],
-            [$this->identity->getEmailIdentity(), $this->identity->getStoreId()],
-            $this->identity->getConfigValue(self::XML_CONFIG_PATH)
+            [$this->storage->getEmailIdentity(), $this->storage->getStoreId()],
+            $this->storage->getConfigValue(self::XML_CONFIG_PATH)
         );
     }
 

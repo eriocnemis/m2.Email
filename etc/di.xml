@@ -8,6 +8,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <!-- plugin -->
+    <type name="Magento\Framework\Mail\TemplateInterface">
+        <plugin name="eriocnemis_email" type="Eriocnemis\Email\Plugin\Framework\Mail\TemplatePlugin" sortOrder="1"/>
+    </type>
     <type name="Magento\Framework\Mail\Template\SenderResolverInterface">
         <plugin name="eriocnemis_email" type="Eriocnemis\Email\Plugin\Framework\Mail\Template\SenderResolverPlugin" sortOrder="1"/>
     </type>
@@ -32,7 +35,7 @@
                     <item name="class" xsi:type="string">Eriocnemis\Email\Model\Transport\Smtp</item>
                 </item>
                 <item name="file" xsi:type="array">
-                    <item name="label" xsi:type="string" translatable="true">To File</item>
+                    <item name="label" xsi:type="string" translatable="true">Save to File</item>
                     <item name="class" xsi:type="string">Eriocnemis\Email\Model\Transport\File</item>
                     <item name="dummy" xsi:type="boolean">true</item>
                 </item>

@@ -46,21 +46,21 @@ class Smtp extends TransportAbstract
     const XML_CONFIG_PASS = 'trans_email/ident_{{IDENTITY}}/pass';
 
     /**
-     * Email template identity
+     * Storage data
      *
-     * @var Identity
+     * @var Storage
      */
-    private $identity;
+    private $storage;
 
     /**
      * Initialize builder
      *
-     * @param Identity $identity
+     * @param Storage $storage
      */
     public function __construct(
-        Identity $identity
+        Storage $storage
     ) {
-        $this->identity = $identity;
+        $this->storage = $storage;
     }
 
     /**
@@ -84,9 +84,9 @@ class Smtp extends TransportAbstract
     private function getConnectionConfig()
     {
         return [
-            'ssl' => $this->identity->getConfigValue(self::XML_CONFIG_SSL),
-            'username' => $this->identity->getConfigValue(self::XML_CONFIG_USER),
-            'password' => $this->identity->getConfigValue(self::XML_CONFIG_PASS)
+            'ssl' => $this->storage->getConfigValue(self::XML_CONFIG_SSL),
+            'username' => $this->storage->getConfigValue(self::XML_CONFIG_USER),
+            'password' => $this->storage->getConfigValue(self::XML_CONFIG_PASS)
         ];
     }
 
@@ -98,9 +98,9 @@ class Smtp extends TransportAbstract
     private function getOptions()
     {
         return [
-            'host' => $this->identity->getConfigValue(self::XML_CONFIG_HOST),
-            'port' => $this->identity->getConfigValue(self::XML_CONFIG_PORT),
-            'connection_class' => $this->identity->getConfigValue(self::XML_CONFIG_AUTH),
+            'host' => $this->storage->getConfigValue(self::XML_CONFIG_HOST),
+            'port' => $this->storage->getConfigValue(self::XML_CONFIG_PORT),
+            'connection_class' => $this->storage->getConfigValue(self::XML_CONFIG_AUTH),
             'connection_config' => $this->getConnectionConfig()
         ];
     }

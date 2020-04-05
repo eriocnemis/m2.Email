@@ -47,7 +47,7 @@ class Dummy implements MessageInterface
      */
     public function isDisplayed()
     {
-        return $this->helper->isDummy();
+        return false;//$this->helper->isDummy();
     }
 
     /**

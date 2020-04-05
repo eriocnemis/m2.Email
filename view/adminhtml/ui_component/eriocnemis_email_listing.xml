@@ -196,6 +196,7 @@
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Carbon Copy</item>
+                    <item name="visible" xsi:type="boolean">false</item>
                     <item name="sortOrder" xsi:type="number">50</item>
                 </item>
             </argument>
@@ -205,7 +206,45 @@
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Blind Carbon Copy</item>
+                    <item name="visible" xsi:type="boolean">false</item>
                     <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </column>
+        <column name="store_id">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Store</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Store</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+        </column>
+        <column name="type">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Eriocnemis\Email\Model\Config\Source\Template\Type</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Template Type</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="number">80</item>
+                </item>
+            </argument>
+        </column>
+        <column name="transport">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Eriocnemis\Email\Model\Config\Source\Transport</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Transport</item>
+                    <item name="sortOrder" xsi:type="number">90</item>
                 </item>
             </argument>
         </column>
@@ -213,7 +252,7 @@
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">Duration</item>
-                    <item name="sortOrder" xsi:type="number">70</item>
+                    <item name="sortOrder" xsi:type="number">100</item>
                 </item>
             </argument>
         </column>
@@ -223,19 +262,7 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
                     <item name="dataType" xsi:type="string">date</item>
                     <item name="label" xsi:type="string" translate="true">Created At</item>
-                    <item name="sortOrder" xsi:type="number">80</item>
-                </item>
-            </argument>
-        </column>
-        <column name="dummy">
-            <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Magento\Config\Model\Config\Source\Yesno</item>
-                <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">select</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
-                    <item name="dataType" xsi:type="string">select</item>
-                    <item name="label" xsi:type="string" translate="true">Dummy Mode</item>
-                    <item name="sortOrder" xsi:type="number">90</item>
+                    <item name="sortOrder" xsi:type="number">110</item>
                 </item>
             </argument>
         </column>
@@ -247,7 +274,7 @@
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
                     <item name="dataType" xsi:type="string">select</item>
                     <item name="label" xsi:type="string" translate="true">Status</item>
-                    <item name="sortOrder" xsi:type="number">100</item>
+                    <item name="sortOrder" xsi:type="number">120</item>
                 </item>
             </argument>
         </column>
@@ -258,7 +285,7 @@
                     <item name="viewUrlPath" xsi:type="string">eriocnemis_email/index/view</item>
                     <item name="urlEntityParamName" xsi:type="string">id</item>
                     <item name="visible" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="number">110</item>
+                    <item name="sortOrder" xsi:type="number">130</item>
                 </item>
             </argument>
         </actionsColumn>

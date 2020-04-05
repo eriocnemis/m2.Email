@@ -44,6 +44,20 @@ class InstallSchema implements InstallSchemaInterface
                 'Email Id'
             )
             ->addColumn(
+                'store_id',
+                Table::TYPE_SMALLINT,
+                null,
+                ['unsigned' => true, 'nullable' => false],
+                'Store ID'
+            )
+            ->addColumn(
+                'template_id',
+                Table::TYPE_TEXT,
+                255,
+                [],
+                'Template Identifier'
+            )
+            ->addColumn(
                 'to',
                 Table::TYPE_TEXT,
                 255,
@@ -100,18 +114,18 @@ class InstallSchema implements InstallSchemaInterface
                 'Error'
             )
             ->addColumn(
-                'dummy',
+                'type',
                 Table::TYPE_SMALLINT,
                 null,
-                ['unsigned' => true, 'nullable' => false, 'default' => 0],
-                'Dummy Mode'
+                ['unsigned' => true, 'nullable' => false],
+                'Message Type'
             )
             ->addColumn(
-                'status',
+                'transport',
                 Table::TYPE_TEXT,
                 50,
-                ['nullable' => false, 'default' => Constant::STATUS_PROCESS],
-                'Status'
+                [],
+                'Mail Transport'
             )
             ->addColumn(
                 'created_at',
@@ -134,25 +148,28 @@ class InstallSchema implements InstallSchemaInterface
                 [],
                 'Duration'
             )
-            ->addIndex(
-                $installer->getIdxName($logTable, ['to']),
-                ['to']
+            ->addColumn(
+                'status',
+                Table::TYPE_TEXT,
+                50,
+                ['nullable' => false, 'default' => Constant::STATUS_PROCESS],
+                'Status'
             )
             ->addIndex(
-                $installer->getIdxName($logTable, ['cc']),
-                ['cc']
+                $installer->getIdxName($logTable, ['store_id']),
+                ['store_id']
             )
             ->addIndex(
-                $installer->getIdxName($logTable, ['bcc']),
-                ['bcc']
+                $installer->getIdxName($logTable, ['template_id']),
+                ['template_id']
             )
             ->addIndex(
-                $installer->getIdxName($logTable, ['from']),
-                ['from']
+                $installer->getIdxName($logTable, ['type']),
+                ['type']
             )
             ->addIndex(
-                $installer->getIdxName($logTable, ['dummy']),
-                ['dummy']
+                $installer->getIdxName($logTable, ['transport']),
+                ['transport']
             )
             ->addIndex(
                 $installer->getIdxName($logTable, ['status']),
@@ -166,6 +183,13 @@ class InstallSchema implements InstallSchemaInterface
                 ),
                 ['subject', 'body'],
                 ['type' => AdapterInterface::INDEX_TYPE_FULLTEXT]
+            )
+            ->addForeignKey(
+                $installer->getFkName($logTable, 'store_id', 'store', 'store_id'),
+                'store_id',
+                $installer->getTable('store'),
+                'store_id',
+                Table::ACTION_CASCADE
             )
             ->setComment(
                 'Eriocnemis Email Log Table'

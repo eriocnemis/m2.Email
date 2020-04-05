@@ -6,7 +6,7 @@
 namespace Eriocnemis\Email\Plugin\Framework\Mail\Template;
 
 use Magento\Framework\Mail\Template\TransportBuilder as Subject;
-use Eriocnemis\Email\Model\Transport\Identity;
+use Eriocnemis\Email\Model\Transport\Storage;
 
 /**
  * Email transport builder plugin
@@ -14,21 +14,21 @@ use Eriocnemis\Email\Model\Transport\Identity;
 class TransportBuilderPlugin
 {
     /**
-     * Email template identity
+     * Storage data
      *
-     * @var Identity
+     * @var Storage
      */
-    private $identity;
+    private $storage;
 
     /**
      * Initialize builder
      *
-     * @param Identity $identity
+     * @param Storage $storage
      */
     public function __construct(
-        Identity $identity
+        Storage $storage
     ) {
-        $this->identity = $identity;
+        $this->storage = $storage;
     }
 
     /**
@@ -42,7 +42,7 @@ class TransportBuilderPlugin
     public function beforeSetFromByScope(Subject $subject, $from, $scopeId = null)
     {
         if (is_string($from)) {
-            $this->identity->setEmailIdentity($from)
+            $this->storage->setEmailIdentity($from)
                 ->setStoreId($scopeId);
         }
         return null;
@@ -57,7 +57,82 @@ class TransportBuilderPlugin
      */
     public function beforeSetTemplateIdentifier(Subject $subject, $templateIdentifier)
     {
-        $this->identity->setTemplateId($templateIdentifier);
+        $this->storage->setTemplateId($templateIdentifier);
+
+        return null;
+    }
+
+    /**
+     * Add to address
+     *
+     * @param Subject $subject
+     * @param array|string $address
+     * @param string $name
+     * @return null
+     */
+    public function beforeAddTo(Subject $subject, $address, $name = '')
+    {
+        $this->storage->addTo($address, $name);
+
+        return null;
+    }
+
+    /**
+     * Add cc address
+     *
+     * @param Subject $subject
+     * @param array|string $address
+     * @param string $name
+     * @return null
+     */
+    public function beforeAddCc(Subject $subject, $address, $name = '')
+    {
+        $this->storage->addCc($address, $name);
+
+        return null;
+    }
+
+    /**
+     * Add bcc address
+     *
+     * @param Subject $subject
+     * @param array|string $address
+     * @param string $name
+     * @return null
+     */
+    public function beforeAddBcc(Subject $subject, $address, $name = '')
+    {
+        $this->storage->addBcc($address, $name);
+
+        return null;
+    }
+
+    /**
+     * Set reply to address
+     *
+     * @param Subject $subject
+     * @param array|string $address
+     * @param string $name
+     * @return null
+     */
+    public function beforeSetReplyTo(Subject $subject, $address, $name = '')
+    {
+        $this->storage->setReplyTo($address, $name);
+
+        return null;
+    }
+
+    /**
+     * Set from address
+     *
+     * @param Subject $subject
+     * @param string|array $from
+     * @return null
+     */
+    public function beforeSetFrom(Subject $subject, $from)
+    {
+        $this->storage->setFrom($from);
+
         return null;
     }
 }

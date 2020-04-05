@@ -5,10 +5,9 @@
  */
 namespace Eriocnemis\Email\Model\Email;
 
-use Zend\Mail\AddressList;
-use Zend\Mail\Message;
 use Eriocnemis\Email\Helper\Data as Helper;
 use Eriocnemis\Email\Model\Email;
+use Eriocnemis\Email\Model\Transport\Storage;
 use Eriocnemis\Email\Model\ResourceModel\Email\CollectionFactory;
 use Eriocnemis\Email\Model\Constant;
 
@@ -75,14 +74,14 @@ class Manager
     /**
      * Open new email record
      *
-     * @param Message $message
+     * @param Storage $storage
      * @return void
      */
-    public function open(Message $message)
+    public function open(Storage $storage)
     {
         if ($this->isLogEnabled()) {
             $this->timer->start();
-            $this->email = $this->converter->convert($message);
+            $this->email = $this->converter->convert($storage);
             $this->email->save();
         }
     }

@@ -6,7 +6,7 @@
 namespace Eriocnemis\Email\Plugin\Framework\Mail\Template;
 
 use Magento\Framework\Mail\Template\SenderResolverInterface as Subject;
-use Eriocnemis\Email\Model\Transport\Identity;
+use Eriocnemis\Email\Model\Transport\Storage;
 
 /**
  * Email sender resolver plugin
@@ -14,21 +14,21 @@ use Eriocnemis\Email\Model\Transport\Identity;
 class SenderResolverPlugin
 {
     /**
-     * Email template identity
+     * Storage data
      *
-     * @var Identity
+     * @var Storage
      */
-    private $identity;
+    private $storage;
 
     /**
      * Initialize resolver
      *
-     * @param Identity $identity
+     * @param Storage $storage
      */
     public function __construct(
-        Identity $identity
+        Storage $storage
     ) {
-        $this->identity = $identity;
+        $this->storage = $storage;
     }
 
     /**
@@ -42,9 +42,23 @@ class SenderResolverPlugin
     public function beforeResolve(Subject $subject, $sender, $scopeId = null)
     {
         if (is_string($sender)) {
-            $this->identity->setEmailIdentity($sender)
+            $this->storage->setEmailIdentity($sender)
                 ->setStoreId($scopeId);
         }
         return null;
+    }
+
+    /**
+     * Set mail from address by scopeId
+     *
+     * @param Subject $subject
+     * @param string $result
+     * @return string[]
+     */
+    public function afterResolve(Subject $subject, $result)
+    {
+        $this->storage->setFrom($result['email'], $result['name']);
+
+        return $result;
     }
 }

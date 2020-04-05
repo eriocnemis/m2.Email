@@ -5,12 +5,7 @@
  */
 namespace Eriocnemis\Email\Model\Email;
 
-use Zend\Mail\AddressList;
-use Zend\Mail\Message;
-use Symfony\Polyfill\Mbstring\Mbstring;
-use Magento\Framework\Exception\MailException;
-use Magento\Framework\Phrase;
-use Eriocnemis\Email\Helper\Data as Helper;
+use Eriocnemis\Email\Model\Transport\Storage;
 use Eriocnemis\Email\Model\EmailFactory;
 
 /**
@@ -26,108 +21,53 @@ class Converter
     protected $emailFactory;
 
     /**
-     * Helper
-     *
-     * @var Helper
-     */
-    protected $helper;
-
-    /**
      * Initialize converter
      *
      * @param EmailFactory $emailFactory
-     * @param Helper $helper
      */
     public function __construct(
-        EmailFactory $emailFactory,
-        Helper $helper
+        EmailFactory $emailFactory
     ) {
         $this->emailFactory = $emailFactory;
-        $this->helper = $helper;
     }
 
     /**
      * Converts a message in email model
      *
-     * @param Message $message
+     * @param Storage $storage
      * @return \Eriocnemis\Email\Model\Email
      */
-    public function convert(Message $message)
+    public function convert(Storage $storage)
     {
         /** @var \Eriocnemis\Email\Model\Email $email */
         $email = $this->emailFactory->create();
 
-        $email->setFrom($this->prepareFrom($message->getFrom()));
-        $email->setTo($this->prepareEmail($message->getTo()));
+        $email->setFrom($storage->getFrom());
+        $email->setReplyTo($storage->getReplyTo());
 
-        $email->setCc($this->prepareEmail($message->getCc()));
-        $email->setBcc($this->prepareEmail($message->getBcc()));
-        $email->setReplyTo($this->prepareEmail($message->getReplyTo()));
+        $email->setTo($this->prepareEmail($storage->getTo()));
+        $email->setCc($this->prepareEmail($storage->getCc()));
+        $email->setBcc($this->prepareEmail($storage->getBcc()));
 
-        $email->setBody($this->getBody($message));
-        $email->setSubject((string)$message->getSubject());
-        $email->setDummy((int)$this->helper->isDummy());
+        $email->setBody($storage->getBody());
+        $email->setSubject($storage->getSubject());
+        $email->setType($storage->getType());
+
+        $email->setStoreId($storage->getStoreId());
+        $email->setTemplateId($storage->getTemplateId());
+        $email->setTransport($storage->getTransport());
 
         return $email;
     }
 
     /**
-     * Retrieve prepared content
-     *
-     * @param Message $message
-     * @return string
-     */
-    protected function getBody(Message $message)
-    {
-        $body = $message->getBodyText();
-        /** @var \Zend\Mail\Header\HeaderInterface $header */
-        $header = $message->getHeaders()->get('contenttransferencoding');
-
-        switch ($header->getFieldValue()) {
-            case 'quoted-printable':
-                $body = quoted_printable_decode($message->getBodyText());
-                break;
-            case 'base64':
-                $body = Mbstring::mb_convert_encoding($message->getBodyText(), 'UTF-8', 'BASE64');
-                break;
-        }
-        return (string)$body;
-    }
-
-    /**
      * Retrieve prepared emails
      *
-     * @param AddressList $addressList
+     * @param array $addressList
      * @return string
      */
-    protected function prepareEmail(AddressList $addressList)
+    protected function prepareEmail(array $addressList)
     {
-        $emails = [];
-        $addressList->rewind();
-        while ($addressList->valid()) {
-            $emails[] = $addressList->current()->getEmail();
-            $addressList->next();
-        }
-        return implode(',', $emails);
-    }
-
-    /**
-     * Retrieve prepared from
-     *
-     * @param AddressList $addressList
-     * @return string
-     */
-    protected function prepareFrom(AddressList $addressList)
-    {
-        $addressList->rewind();
-        if ($addressList->valid()) {
-            return $addressList->current()->getEmail();
-        }
-        throw new MailException(
-            new Phrase(
-                'Transport expects either a Sender or at least one From address in the Message;' .
-                ' none provided'
-            )
-        );
+        return implode(',', array_values($addressList));
     }
 }

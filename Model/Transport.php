@@ -5,14 +5,13 @@
  */
 namespace Eriocnemis\Email\Model;
 
-use Zend\Mail\Message;
 use Magento\Framework\Exception\MailException;
 use Magento\Framework\Mail\MessageInterface;
 use Magento\Framework\Mail\TransportInterface;
 use Magento\Framework\Phrase;
 use Eriocnemis\Email\Model\Email\Manager;
 use Eriocnemis\Email\Model\Transport\TransportFactory;
-use Eriocnemis\Email\Model\Transport\Identity;
+use Eriocnemis\Email\Model\Transport\Storage;
 
 /**
  * Email transport
@@ -41,29 +40,29 @@ class Transport implements TransportInterface
     private $manager;
 
     /**
-     * Email template identity
+     * Storage data
      *
-     * @var Identity
+     * @var Storage
      */
-    private $identity;
+    private $storage;
 
     /**
      * Initialize transport
      *
      * @param MessageInterface $message
      * @param Manager $manager
-     * @param Identity $identity
+     * @param Storage $storage
      * @param TransportFactory $transportFactory
      */
     public function __construct(
         MessageInterface $message,
         Manager $manager,
-        Identity $identity,
+        Storage $storage,
         TransportFactory $transportFactory
     ) {
         $this->message = $message;
         $this->manager = $manager;
-        $this->identity = $identity;
+        $this->storage = $storage;
         $this->transportFactory = $transportFactory;
     }
 
@@ -76,19 +75,16 @@ class Transport implements TransportInterface
     public function sendMessage()
     {
         try {
-            /** @var Message $message */
-            $message = Message::fromString(
+            $this->manager->open($this->storage);
+            $this->getTransport()->send(
                 $this->getMessage()->getRawMessage()
             );
-
-            $this->manager->open($message);
-            $this->getTransport()->send($this->getMessage()->getRawMessage());
         } catch (\Exception $e) {
             $this->manager->setError($e->getMessage());
             throw new MailException(new Phrase($e->getMessage()), $e);
         } finally {
             $this->manager->close();
-            $this->identity->reset();
+            $this->storage->clean();
         }
     }
 
@@ -110,7 +106,7 @@ class Transport implements TransportInterface
     private function getTransport()
     {
         return $this->transportFactory->create(
-            $this->identity->getTransport()
+            $this->storage->getTransport()
         );
     }
 }
