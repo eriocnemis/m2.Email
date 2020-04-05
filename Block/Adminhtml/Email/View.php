@@ -192,7 +192,7 @@ class View extends Container
         $options = $this->transportSource->toArray();
         $transport = $this->getEmail()->getTransport();
 
-        return isset($options[$transport]) ? $options[$transport] : __('Unknown');
+        return $options[$transport] ?? __('Unknown');
     }
 
     /**
@@ -219,7 +219,7 @@ class View extends Container
         $options = $this->statusSource->toArray();
         $status = $this->getEmail()->getStatus();
 
-        return isset($options[$status]) ? $options[$status] : __('Unknown');
+        return $options[$status] ?? __('Unknown');
     }
 
     /**
