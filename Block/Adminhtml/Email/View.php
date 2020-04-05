@@ -6,10 +6,10 @@
 namespace Eriocnemis\Email\Block\Adminhtml\Email;
 
 use Magento\Framework\Registry;
-use Magento\Backend\Block\Widget;
 use Magento\Backend\Block\Widget\Container;
 use Magento\Backend\Block\Widget\Context;
 use Eriocnemis\Email\Model\Config\Source\Status as StatusSource;
+use Eriocnemis\Email\Model\Config\Source\Transport as TransportSource;
 use Eriocnemis\Email\Model\Constant;
 
 /**
@@ -34,21 +34,31 @@ class View extends Container
     protected $statusSource;
 
     /**
+     * Transport source
+     *
+     * @var TransportSource
+     */
+    protected $transportSource;
+
+    /**
      * Initialize block
      *
      * @param Context $context
      * @param Registry $coreRegistry
      * @param StatusSource $statusSource
+     * @param TransportSource $transportSource
      * @param array $data
      */
     public function __construct(
         Context $context,
         Registry $coreRegistry,
         StatusSource $statusSource,
+        TransportSource $transportSource,
         array $data = []
     ) {
         $this->coreRegistry = $coreRegistry;
         $this->statusSource = $statusSource;
+        $this->transportSource = $transportSource;
 
         parent::__construct(
             $context,
@@ -120,17 +130,69 @@ class View extends Container
      */
     public function getTo()
     {
-        return $this->getEmail()->getTo();
+        return preg_replace_callback(
+            '#\(([^()]*)\)#iDs',
+            function ($matches) {
+                if (filter_var($matches[1], FILTER_VALIDATE_EMAIL)) {
+                    return sprintf('(<a href="mailto:%s" target="_blank">%s</a>)', $matches[1], $matches[1]);
+                }                print_r($matches);
+                return $matches[0];
+            },
+            $this->getEmail()->getTo()
+        );
+    }
+
+    /**
+     * Retrieve email cc
+     *
+     * @return string
+     */
+    public function getCc()
+    {
+        return $this->getEmail()->getCc();
+    }
+
+    /**
+     * Retrieve email bcc
+     *
+     * @return string
+     */
+    public function getBcc()
+    {
+        return $this->getEmail()->getBcc();
     }
 
     /**
      * Retrieve subject
      *
-     * @return string|null
+     * @return string
      */
     public function getSubject()
     {
         return $this->getEmail()->getSubject();
+    }
+
+    /**
+     * Retrieve duration
+     *
+     * @return string
+     */
+    public function getDuration()
+    {
+        return sprintf('%0.5F', ($this->getEmail()->getDuration() * 1)) . ' s';
+    }
+
+    /**
+     * Retrieve transport
+     *
+     * @return string
+     */
+    public function getTransport()
+    {
+        $options = $this->transportSource->toArray();
+        $transport = $this->getEmail()->getTransport();
+
+        return isset($options[$transport]) ? $options[$transport] : __('Unknown');
     }
 
     /**
@@ -142,7 +204,8 @@ class View extends Container
     {
         return $this->formatDate(
             $this->getEmail()->getCreatedAt(),
-            \IntlDateFormatter::FULL
+            \IntlDateFormatter::FULL,
+            true
         );
     }
 
@@ -153,13 +216,10 @@ class View extends Container
      */
     public function getStatus()
     {
-        $options = $this->statusSource->toOptionArray();
-        foreach ($options as $option) {
-            if ($option['value'] == $this->getEmail()->getStatus()) {
-                return $option['label'];
-            }
-        }
-        return __('Unknown');
+        $options = $this->statusSource->toArray();
+        $status = $this->getEmail()->getStatus();
+
+        return isset($options[$status]) ? $options[$status] : __('Unknown');
     }
 
     /**

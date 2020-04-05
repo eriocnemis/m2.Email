@@ -14,20 +14,24 @@
                 <table class="admin__table-secondary order-information-table">
                     <tbody>
                         <tr>
+                            <th><?= $block->escapeHtml(__('Subject')) ?></th>
+                            <td><?= $block->escapeHtml($block->getSubject()) ?></td>
+                        </tr>
+                        <tr>
                             <th><?= $block->escapeHtml(__('Recipient Email')) ?></th>
-                            <td>
-                                <a href="mailto:<?= $block->escapeHtml($block->getTo()) ?>">
-                                    <?= $block->escapeHtml($block->getTo()) ?>
-                                </a>
-                            </td>
+                            <td><?= /* @noEscape */ $block->getTo() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Carbon Copy')) ?></th>
+                            <td><?= /* @noEscape */ $block->getCc() ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Blind Carbon Copy')) ?></th>
+                            <td><?= /* @noEscape */ $block->getBcc() ?></td>
                         </tr>
                         <tr>
                             <th><?= $block->escapeHtml(__('From')) ?></th>
                             <td><?= $block->escapeHtml($block->getFrom()) ?></td>
-                        </tr>
-                        <tr>
-                            <th><?= $block->escapeHtml(__('Subject')) ?></th>
-                            <td><?= $block->escapeHtml($block->getSubject()) ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -43,6 +47,14 @@
                         <tr>
                             <th><?= $block->escapeHtml(__('Sending Time')) ?></th>
                             <td><?= $block->escapeHtml($block->getCreatedAt()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Sending Duration')) ?></th>
+                            <td><?= $block->escapeHtml($block->getDuration()) ?></td>
+                        </tr>
+                        <tr>
+                            <th><?= $block->escapeHtml(__('Transport')) ?></th>
+                            <td><?= $block->escapeHtml($block->getTransport()) ?></td>
                         </tr>
                         <tr>
                             <th><?= $block->escapeHtml(__('Status')) ?></th>
