@@ -42,8 +42,7 @@ class SenderResolverPlugin
     public function beforeResolve(Subject $subject, $sender, $scopeId = null)
     {
         if (is_string($sender)) {
-            $this->storage->setEmailIdentity($sender)
-                ->setStoreId($scopeId);
+            $this->storage->setEmailIdentity($sender);
         }
         return null;
     }

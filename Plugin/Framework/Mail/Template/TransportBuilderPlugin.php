@@ -42,8 +42,7 @@ class TransportBuilderPlugin
     public function beforeSetFromByScope(Subject $subject, $from, $scopeId = null)
     {
         if (is_string($from)) {
-            $this->storage->setEmailIdentity($from)
-                ->setStoreId($scopeId);
+            $this->storage->setEmailIdentity($from);
         }
         return null;
     }
@@ -133,6 +132,21 @@ class TransportBuilderPlugin
     {
         $this->storage->setFrom($from);
 
+        return null;
+    }
+
+    /**
+     * Set template options
+     *
+     * @param Subject $subject
+     * @param array $from
+     * @return null
+     */
+    public function beforeSetTemplateOptions(Subject $subject, $templateOptions)
+    {
+        if (isset($templateOptions['store'])) {
+            $this->storage->setStoreId($templateOptions['store']);
+        }
         return null;
     }
 }
