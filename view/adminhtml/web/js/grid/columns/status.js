@@ -10,9 +10,7 @@ define([
 
     return Select.extend({
         defaults: {
-            messageIndex: 'text',
             fieldClass: {
-                message: true,
                 'status-failed': false,
                 'status-process': false,
                 'status-success': false
@@ -24,7 +22,11 @@ define([
             }
         },
 
-        /** @inheritdoc */
+        /**
+         * Returns list of classes that should be applied to a field
+         *
+         * @returns {Object}
+         */
         getFieldClass: function ($row) {
             var status = this.statusMap[$row.status] || 'process',
                 result = {};
