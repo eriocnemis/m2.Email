@@ -172,6 +172,10 @@ class InstallSchema implements InstallSchemaInterface
                 ['transport']
             )
             ->addIndex(
+                $installer->getIdxName($logTable, ['created_at']),
+                ['created_at']
+            )
+            ->addIndex(
                 $installer->getIdxName($logTable, ['status']),
                 ['status']
             )

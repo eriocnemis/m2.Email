@@ -10,6 +10,7 @@ define([
 
     return Select.extend({
         defaults: {
+            bodyTmpl: 'Eriocnemis_Email/grid/cells/status',
             fieldClass: {
                 'status-failed': false,
                 'status-process': false,
@@ -37,4 +38,4 @@ define([
             return result;
         }
     });
-}); 
+});
