@@ -42,10 +42,10 @@ class Converter
         /** @var \Eriocnemis\Email\Model\Email $email */
         $email = $this->emailFactory->create();
 
-        $email->setFrom($storage->getFrom());
+        $email->setSender($storage->getSender());
         $email->setReplyTo($storage->getReplyTo());
 
-        $email->setTo($this->prepareEmail($storage->getTo()));
+        $email->setRecipient($this->prepareEmail($storage->getRecipient()));
         $email->setCc($this->prepareEmail($storage->getCc()));
         $email->setBcc($this->prepareEmail($storage->getBcc()));
 

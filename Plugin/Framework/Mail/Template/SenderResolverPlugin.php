@@ -56,7 +56,7 @@ class SenderResolverPlugin
      */
     public function afterResolve(Subject $subject, $result)
     {
-        $this->storage->setFrom($result['email'], $result['name']);
+        $this->storage->setSender($result['email'], $result['name']);
 
         return $result;
     }

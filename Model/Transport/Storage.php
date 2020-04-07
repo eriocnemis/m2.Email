@@ -68,18 +68,18 @@ class Storage
     private $type = '';
 
     /**
-     * Email from address
+     * Email sender address
      *
      * @var string
      */
-    private $from = '';
+    private $sender = '';
 
     /**
-     * Email to addresses
+     * Email recipient addresses
      *
      * @var string[]
      */
-    private $to = [];
+    private $recipient = [];
 
     /**
      * Email cc addresses
@@ -262,54 +262,54 @@ class Storage
     }
 
     /**
-     * Set from address
+     * Set sender address
      *
      * @param array|string $address
      * @param string $name
      * @return $this
      */
-    public function setFrom($address, $name = '')
+    public function setSender($address, $name = '')
     {
         if (is_array($address)) {
-            $this->from = (string)current($this->prepareAddress($address));
+            $this->sender = (string)current($this->prepareAddress($address));
         } else {
-            $this->from = $this->formatAddress($address, $name);
+            $this->sender = $this->formatAddress($address, $name);
         }
         return $this;
     }
 
     /**
-     * Retrieve from address
+     * Retrieve sender address
      *
      * @return string
      */
-    public function getFrom()
+    public function getSender()
     {
-        return $this->from;
+        return $this->sender;
     }
 
     /**
-     * Add to address
+     * Add recipient address
      *
      * @param array|string $address
      * @param string $name
      * @return $this
      */
-    public function addTo($address, $name = '')
+    public function addRecipient($address, $name = '')
     {
-        $this->to += $this->prepareAddress($address, $name);
+        $this->recipient += $this->prepareAddress($address, $name);
 
         return $this;
     }
 
     /**
-     * Retrieve to address
+     * Retrieve recipient address
      *
      * @return string[]
      */
-    public function getTo()
+    public function getRecipient()
     {
-        return $this->to;
+        return $this->recipient;
     }
 
     /**
@@ -457,8 +457,8 @@ class Storage
         $this->subject = '';
         $this->body = '';
         $this->type = '';
-        $this->from = '';
-        $this->to = [];
+        $this->sender = '';
+        $this->recipient = [];
         $this->cc = [];
         $this->bcc = [];
         $this->replyTo = '';

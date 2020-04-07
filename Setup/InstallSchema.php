@@ -58,7 +58,7 @@ class InstallSchema implements InstallSchemaInterface
                 'Template Identifier'
             )
             ->addColumn(
-                'to',
+                'recipient',
                 Table::TYPE_TEXT,
                 255,
                 ['nullable' => false],
@@ -79,11 +79,11 @@ class InstallSchema implements InstallSchemaInterface
                 'Blind Carbon Copy'
             )
             ->addColumn(
-                'from',
+                'sender',
                 Table::TYPE_TEXT,
                 255,
                 ['nullable' => false],
-                'From'
+                'Sender'
             )
             ->addColumn(
                 'reply_to',

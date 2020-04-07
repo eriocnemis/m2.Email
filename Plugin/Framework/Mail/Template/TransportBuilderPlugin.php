@@ -71,7 +71,7 @@ class TransportBuilderPlugin
      */
     public function beforeAddTo(Subject $subject, $address, $name = '')
     {
-        $this->storage->addTo($address, $name);
+        $this->storage->addRecipient($address, $name);
 
         return null;
     }
@@ -130,7 +130,7 @@ class TransportBuilderPlugin
      */
     public function beforeSetFrom(Subject $subject, $from)
     {
-        $this->storage->setFrom($from);
+        $this->storage->setSender($from);
 
         return null;
     }
