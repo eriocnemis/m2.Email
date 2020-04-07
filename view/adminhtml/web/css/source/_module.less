@@ -7,3 +7,34 @@
 .eriocnemis_email-index-index .data-grid .data-row {
     cursor: pointer;
 }
+
+.eriocnemis-email-index-index .status-process div::after,
+.eriocnemis_email-index-index .status-process div::after,
+.eriocnemis-email-index-index .status-success div::after,
+.eriocnemis_email-index-index .status-success div::after,
+.eriocnemis-email-index-index .status-failed div::after,
+.eriocnemis_email-index-index .status-failed div::after {
+    content: '';
+    display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+    float: right;
+}
+
+.eriocnemis-email-index-index .status-process div::after,
+.eriocnemis_email-index-index .status-process div::after {
+    mask-image: url('@{baseDir}Eriocnemis_Email/images/process.svg');
+    background-color: gray;
+}
+
+.eriocnemis-email-index-index .status-success div::after,
+.eriocnemis_email-index-index .status-success div::after {
+    mask-image: url('@{baseDir}Eriocnemis_Email/images/success.svg');
+    background-color: green;
+}
+
+.eriocnemis-email-index-index .status-failed div::after,
+.eriocnemis_email-index-index .status-failed div::after {
+    mask-image: url('@{baseDir}Eriocnemis_Email/images/failed.svg');
+    background-color: #e22626;
+}

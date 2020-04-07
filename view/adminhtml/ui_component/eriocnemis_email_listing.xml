@@ -271,8 +271,9 @@
                 <item name="options" xsi:type="object">Eriocnemis\Email\Model\Config\Source\Status</item>
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">select</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="component" xsi:type="string">Eriocnemis_Email/js/grid/columns/status</item>
                     <item name="dataType" xsi:type="string">select</item>
+                    <item name="fieldClass" xsi:type="string">{record.transport:true}</item>
                     <item name="label" xsi:type="string" translate="true">Status</item>
                     <item name="sortOrder" xsi:type="number">120</item>
                 </item>
