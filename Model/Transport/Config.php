@@ -79,6 +79,6 @@ class Config
      */
     public function isDummy($name)
     {
-        return (bool)$this->config[$name]['dummy'] ?? false;
+        return !empty($this->config[$name]['dummy']);
     }
 }
