@@ -46,24 +46,6 @@ class Smtp extends TransportAbstract
     const XML_CONFIG_PASS = 'trans_email/ident_{{IDENTITY}}/pass';
 
     /**
-     * Storage data
-     *
-     * @var Storage
-     */
-    private $storage;
-
-    /**
-     * Initialize builder
-     *
-     * @param Storage $storage
-     */
-    public function __construct(
-        Storage $storage
-    ) {
-        $this->storage = $storage;
-    }
-
-    /**
      * Retrieve transport config
      *
      * @return array

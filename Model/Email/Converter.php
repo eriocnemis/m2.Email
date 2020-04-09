@@ -5,6 +5,7 @@
  */
 namespace Eriocnemis\Email\Model\Email;
 
+use Eriocnemis\Email\Model\Transport\Config;
 use Eriocnemis\Email\Model\Transport\Storage;
 use Eriocnemis\Email\Model\EmailFactory;
 
@@ -18,17 +19,27 @@ class Converter
      *
      * @var EmailFactory
      */
-    protected $emailFactory;
+    private $emailFactory;
+
+    /**
+     * Transport config
+     *
+     * @var Config
+     */
+    private $config;
 
     /**
      * Initialize converter
      *
      * @param EmailFactory $emailFactory
+     * @param Config $config
      */
     public function __construct(
-        EmailFactory $emailFactory
+        EmailFactory $emailFactory,
+        Config $config
     ) {
         $this->emailFactory = $emailFactory;
+        $this->config = $config;
     }
 
     /**
@@ -51,12 +62,15 @@ class Converter
 
         $email->setBody($storage->getBody());
         $email->setSubject($storage->getSubject());
+        $email->setOriginal(convert_uuencode(gzencode($storage->getOriginal())));
         $email->setType($storage->getType());
 
         $email->setStoreId($storage->getStoreId());
         $email->setTemplateId($storage->getTemplateId());
         $email->setTransport($storage->getTransport());
-
+        $email->setDummy(
+            (int)$this->config->isDummy($storage->getTransport())
+        );
         return $email;
     }
 

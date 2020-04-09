@@ -14,6 +14,24 @@ use Zend\Mail\Transport\Factory as TransportFactory;
 abstract class TransportAbstract implements TransportInterface
 {
     /**
+     * Storage data
+     *
+     * @var Storage
+     */
+    protected $storage;
+
+    /**
+     * Initialize builder
+     *
+     * @param Storage $storage
+     */
+    public function __construct(
+        Storage $storage
+    ) {
+        $this->storage = $storage;
+    }
+
+    /**
      * Convert message to zend object
      *
      * @param string $message
@@ -21,6 +39,9 @@ abstract class TransportAbstract implements TransportInterface
      */
     protected function prepareMessage(string $message)
     {
+        $this->storage->setOriginal(
+            $message
+        );
         return Message::fromString($message);
     }
 

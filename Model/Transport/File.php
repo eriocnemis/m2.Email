@@ -35,13 +35,6 @@ class File extends TransportAbstract
     const XML_CONFIG_EXTENSION = 'trans_email/ident_{{IDENTITY}}/extension';
 
     /**
-     * Storage data
-     *
-     * @var Storage
-     */
-    private $storage;
-
-    /**
      * Write interface
      *
      * @var WriteInterface
@@ -65,8 +58,11 @@ class File extends TransportAbstract
         Storage $storage,
         Filesystem $filesystem
     ) {
-        $this->storage = $storage;
         $this->filesystem = $filesystem;
+
+        parent::__construct(
+            $storage
+        );
     }
 
     /**

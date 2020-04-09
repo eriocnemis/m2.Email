@@ -54,7 +54,7 @@ class InstallSchema implements InstallSchemaInterface
                 'template_id',
                 Table::TYPE_TEXT,
                 255,
-                [],
+                ['nullable' => false],
                 'Template Identifier'
             )
             ->addColumn(
@@ -68,14 +68,14 @@ class InstallSchema implements InstallSchemaInterface
                 'cc',
                 Table::TYPE_TEXT,
                 255,
-                [],
+                ['nullable' => false],
                 'Carbon Copy'
             )
             ->addColumn(
                 'bcc',
                 Table::TYPE_TEXT,
                 255,
-                [],
+                ['nullable' => false],
                 'Blind Carbon Copy'
             )
             ->addColumn(
@@ -89,7 +89,7 @@ class InstallSchema implements InstallSchemaInterface
                 'reply_to',
                 Table::TYPE_TEXT,
                 255,
-                [],
+                ['nullable' => false],
                 'Reply To'
             )
             ->addColumn(
@@ -124,8 +124,15 @@ class InstallSchema implements InstallSchemaInterface
                 'transport',
                 Table::TYPE_TEXT,
                 50,
-                [],
+                ['nullable' => false],
                 'Mail Transport'
+            )
+            ->addColumn(
+                'dummy',
+                Table::TYPE_SMALLINT,
+                null,
+                ['unsigned' => true, 'nullable' => false, 'default' => 0],
+                'Dummy Mode'
             )
             ->addColumn(
                 'created_at',
@@ -149,6 +156,13 @@ class InstallSchema implements InstallSchemaInterface
                 'Duration'
             )
             ->addColumn(
+                'original',
+                Table::TYPE_BLOB,
+                '64K',
+                [],
+                'Original Message'
+            )
+            ->addColumn(
                 'status',
                 Table::TYPE_TEXT,
                 50,
@@ -170,6 +184,10 @@ class InstallSchema implements InstallSchemaInterface
             ->addIndex(
                 $installer->getIdxName($logTable, ['transport']),
                 ['transport']
+            )
+            ->addIndex(
+                $installer->getIdxName($logTable, ['dummy']),
+                ['dummy']
             )
             ->addIndex(
                 $installer->getIdxName($logTable, ['created_at']),

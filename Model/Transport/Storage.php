@@ -103,6 +103,13 @@ class Storage
     private $replyTo = '';
 
     /**
+     * Email original message
+     *
+     * @var string
+     */
+    private $original;
+
+    /**
      * Initialize storage
      *
      * @param ScopeConfigInterface $scopeConfig
@@ -383,6 +390,29 @@ class Storage
     }
 
     /**
+     * Set original message
+     *
+     * @param string $original
+     * @return $this
+     */
+    public function setOriginal($original)
+    {
+        $this->original = $original;
+
+        return $this;
+    }
+
+    /**
+     * Retrieve original message
+     *
+     * @return string
+     */
+    public function getOriginal()
+    {
+        return $this->original;
+    }
+
+    /**
      * Retrieve store configuration value
      *
      * @param string $path
@@ -462,6 +492,7 @@ class Storage
         $this->cc = [];
         $this->bcc = [];
         $this->replyTo = '';
+        $this->original = null;
 
         return $this;
     }
