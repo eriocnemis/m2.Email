@@ -19,7 +19,7 @@
                         </tr>
                         <tr>
                             <th><?= $block->escapeHtml(__('Recipient Email')) ?></th>
-                            <td><?= /* @noEscape */ $block->getTo() ?></td>
+                            <td><?= /* @noEscape */ $block->getRecipient() ?></td>
                         </tr>
                         <tr>
                             <th><?= $block->escapeHtml(__('Carbon Copy')) ?></th>
@@ -30,8 +30,8 @@
                             <td><?= /* @noEscape */ $block->getBcc() ?></td>
                         </tr>
                         <tr>
-                            <th><?= $block->escapeHtml(__('From')) ?></th>
-                            <td><?= $block->escapeHtml($block->getFrom()) ?></td>
+                            <th><?= $block->escapeHtml(__('Sender')) ?></th>
+                            <td><?= $block->escapeHtml($block->getSender()) ?></td>
                         </tr>
                     </tbody>
                 </table>

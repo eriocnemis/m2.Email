@@ -114,13 +114,13 @@ class View extends Container
     }
 
     /**
-     * Retrieve from
+     * Retrieve sender
      *
      * @return string
      */
-    public function getFrom()
+    public function getSender()
     {
-        return $this->getEmail()->getFrom();
+        return $this->getEmail()->getSender();
     }
 
     /**
@@ -128,7 +128,7 @@ class View extends Container
      *
      * @return string
      */
-    public function getTo()
+    public function getRecipient()
     {
         return preg_replace_callback(
             '#\(([^()]*)\)#iDs',
@@ -138,7 +138,7 @@ class View extends Container
                 }
                 return $matches[0];
             },
-            $this->getEmail()->getTo()
+            $this->getEmail()->getRecipient()
         );
     }
 
