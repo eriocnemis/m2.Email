@@ -15,12 +15,14 @@ define([
                 'status-failed': false,
                 'status-process': false,
                 'status-success': false,
+                'status-undefined': false,
                 'mode-dummy': false
             },
             statusMap: {
                 failed: 'failed',
                 process: 'process',
-                success: 'success'
+                success: 'success',
+                undefined: 'undefined'
             }
         },
 
@@ -30,7 +32,7 @@ define([
          * @returns {Object}
          */
         getFieldClass: function ($row) {
-            var status = this.statusMap[$row.status] || 'process',
+            var status = this.statusMap[$row.status] || 'undefined',
                 result = {};
 
             result['status-' + status] = true;

@@ -35,7 +35,8 @@
     /* grid status field */
     .status-process div::after,
     .status-success div::after,
-    .status-failed div::after {
+    .status-failed div::after,
+    .status-undefined div::after {
         content: '';
         display: block;
         width: 1.7rem;
@@ -56,6 +57,11 @@
     .status-failed div::after {
         mask-image: url('@{baseDir}Eriocnemis_Email/images/failed.svg');
         background-color: #e22626;
+    }
+
+    .status-undefined div::after {
+        mask-image: url('@{baseDir}Eriocnemis_Email/images/undefined.svg');
+        background-color: gray;
     }
 
     .mode-dummy div::after {
