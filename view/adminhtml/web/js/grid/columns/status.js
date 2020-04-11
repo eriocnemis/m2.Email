@@ -14,7 +14,8 @@ define([
             fieldClass: {
                 'status-failed': false,
                 'status-process': false,
-                'status-success': false
+                'status-success': false,
+                'mode-dummy': false
             },
             statusMap: {
                 failed: 'failed',
@@ -33,6 +34,7 @@ define([
                 result = {};
 
             result['status-' + status] = true;
+            result['mode-dummy'] = $row.dummy == 1 ? true : false;
             result = _.extend({}, this.fieldClass, result);
 
             return result;

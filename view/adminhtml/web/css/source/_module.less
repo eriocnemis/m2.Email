@@ -3,56 +3,62 @@
  * Copyright © Eriocnemis, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-.eriocnemis-email-index-view .message-information,
-.eriocnemis_email-index-view .message-information {
-    float: left;
-    width: 49%;
-}
-.eriocnemis-email-index-view .sending-information,
-.eriocnemis_email-index-view .sending-information {
-    float: right;
-    width: 49%;
+.eriocnemis-email-index-view,
+.eriocnemis_email-index-view {
+    /* block information */
+    .message-information {
+        float: left;
+    }
+
+    .sending-information {
+        float: right;
+    }
+
+    .message-information,
+    .sending-information {
+        width: 49%;
+    }
+
+    .message-information-table td,
+    .sending-information-table td {
+        text-align: right;
+    }
 }
 
-.eriocnemis-email-index-view .message-information-table td,
-.eriocnemis_email-index-view .message-information-table td,
-.eriocnemis-email-index-view .sending-information-table td,
-.eriocnemis_email-index-view .sending-information-table td {
-    text-align: right;
-}
+.eriocnemis-email-index-index,
+.eriocnemis_email-index-index {
+    /* grid row */
+    .data-row {
+        cursor: pointer;
+    }
 
-.eriocnemis-email-index-index .data-grid .data-row,
-.eriocnemis_email-index-index .data-grid .data-row {
-    cursor: pointer;
-}
+    /* grid status field */
+    .status-process div::after,
+    .status-success div::after,
+    .status-failed div::after {
+        content: '';
+        display: block;
+        width: 1.7rem;
+        height: 1.7rem;
+        float: right;
+    }
 
-.eriocnemis-email-index-index .status-process div::after,
-.eriocnemis_email-index-index .status-process div::after,
-.eriocnemis-email-index-index .status-success div::after,
-.eriocnemis_email-index-index .status-success div::after,
-.eriocnemis-email-index-index .status-failed div::after,
-.eriocnemis_email-index-index .status-failed div::after {
-    content: '';
-    display: block;
-    width: 1.6rem;
-    height: 1.6rem;
-    float: right;
-}
+    .status-process div::after {
+        mask-image: url('@{baseDir}Eriocnemis_Email/images/process.svg');
+        background-color: gray;
+    }
 
-.eriocnemis-email-index-index .status-process div::after,
-.eriocnemis_email-index-index .status-process div::after {
-    mask-image: url('@{baseDir}Eriocnemis_Email/images/process.svg');
-    background-color: gray;
-}
+    .status-success div::after {
+        mask-image: url('@{baseDir}Eriocnemis_Email/images/success.svg');
+        background-color: green;
+    }
 
-.eriocnemis-email-index-index .status-success div::after,
-.eriocnemis_email-index-index .status-success div::after {
-    mask-image: url('@{baseDir}Eriocnemis_Email/images/success.svg');
-    background-color: green;
-}
+    .status-failed div::after {
+        mask-image: url('@{baseDir}Eriocnemis_Email/images/failed.svg');
+        background-color: #e22626;
+    }
 
-.eriocnemis-email-index-index .status-failed div::after,
-.eriocnemis_email-index-index .status-failed div::after {
-    mask-image: url('@{baseDir}Eriocnemis_Email/images/failed.svg');
-    background-color: #e22626;
+    .mode-dummy div::after {
+        background-color: gray;
+    }
 }
