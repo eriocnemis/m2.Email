@@ -4,14 +4,14 @@
  * See COPYING.txt for license details.
  */
 ?>
-<section class="admin__page-section order-view-account-information">
+<section class="admin__page-section">
     <div class="admin__page-section-content">
-        <div class="admin__page-section-item order-information">
+        <div class="admin__page-section-item message-information">
             <div class="admin__page-section-item-title">
                 <span class="title"><?= $block->escapeHtml(__('Message Information')) ?></span>
             </div>
             <div class="admin__page-section-item-content">
-                <table class="admin__table-secondary order-information-table">
+                <table class="admin__table-secondary message-information-table">
                     <tbody>
                         <tr>
                             <th><?= $block->escapeHtml(__('Subject')) ?></th>
@@ -37,12 +37,12 @@
                 </table>
             </div>
         </div>
-        <div class="admin__page-section-item order-account-information">
+        <div class="admin__page-section-item sending-information">
             <div class="admin__page-section-item-title">
                 <span class="title"><?= $block->escapeHtml(__('Sending Information')) ?></span>
             </div>
             <div class="admin__page-section-item-content">
-                <table class="admin__table-secondary order-account-information-table">
+                <table class="admin__table-secondary sending-information-table">
                     <tbody> 
                         <tr>
                             <th><?= $block->escapeHtml(__('Sending Time')) ?></th>
@@ -70,6 +70,6 @@
         </div>
     </div>
 </section>
-<section class="admin__page-section order-view-account-information">
+<section class="admin__page-section">
     <div id="message-body"><?= /* @noEscape */ $block->getBody() ?></div>
 </section>
