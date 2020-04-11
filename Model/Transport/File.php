@@ -157,8 +157,23 @@ class File extends TransportAbstract
     {
         if (!$this->getDirectory()->isExist($path)) {
             $this->getDirectory()->create($path);
+            $this->addHtaccess($path);
         };
         return $path;
+    }
+
+    /**
+     * Create .htaccess file and deny email directory access from web
+     *
+     * @param string $path
+     * @return void
+     */
+    private function addHtaccess($path)
+    {
+        $htaccess = $path . DIRECTORY_SEPARATOR . '.htaccess';
+        if (!$this->getDirectory()->isFile($htaccess)) {
+            $this->getDirectory()->writeFile($htaccess, 'deny from all');
+        }
     }
 
     /**
@@ -170,7 +185,7 @@ class File extends TransportAbstract
     {
         if (null === $this->dir) {
             $this->dir = $this->filesystem->getDirectoryWrite(
-                DirectoryList::VAR_DIR
+                DirectoryList::MEDIA
             );
         }
         return $this->dir;
