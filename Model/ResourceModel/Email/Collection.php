@@ -59,4 +59,15 @@ class Collection extends AbstractCollection
         );
         return $this;
     }
+
+    /**
+     * Limit collection by store
+     *
+     * @param string $storeId
+     * @return $this
+     */
+    public function addStoreIdFilter($storeId)
+    {
+        return $this->addFieldToFilter('store_id', $storeId);
+    }
 }

@@ -7,6 +7,8 @@ namespace Eriocnemis\Email\Cron;
 
 use Magento\Framework\App\Config\Storage\WriterInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
+use Magento\Store\Api\StoreRepositoryInterface;
+use Magento\Store\Model\ScopeInterface;
 use Eriocnemis\Email\Model\Email\Manager;
 
 /**
@@ -24,37 +26,47 @@ class CleanLog
      *
      * @var Manager
      */
-    protected $manager;
+    private $manager;
 
     /**
      * Config writer
      *
      * @var WriterInterface
      */
-    protected $configWriter;
+    private $configWriter;
 
     /**
      * Locale date
      *
      * @var TimezoneInterface
      */
-    protected $localeDate;
+    private $localeDate;
 
     /**
-     * Initialize Job
+     * Store repository
+     *
+     * @var StoreRepositoryInterface
+     */
+    private $storeRepository;
+
+    /**
+     * Initialize job
      *
      * @param Manager $logManager
      * @param WriterInterface $configWriter
      * @param TimezoneInterface $localeDate
+     * @param StoreRepositoryInterface $storeRepository
      */
     public function __construct(
         Manager $logManager,
         WriterInterface $configWriter,
-        TimezoneInterface $localeDate
+        TimezoneInterface $localeDate,
+        StoreRepositoryInterface $storeRepository
     ) {
         $this->manager = $logManager;
         $this->configWriter = $configWriter;
         $this->localeDate = $localeDate;
+        $this->storeRepository = $storeRepository;
     }
 
     /**
@@ -64,20 +76,25 @@ class CleanLog
      */
     public function execute()
     {
-        $this->manager->deleteExpire();
-        $this->updateLastClean();
+        foreach ($this->storeRepository->getList() as $store) {
+            $this->manager->deleteExpire($store->getId());
+            $this->updateLastClean($store->getId());
+        }
     }
 
     /**
      * Update last clean field
      *
+     * @param string $storeId
      * @return void
      */
-    protected function updateLastClean()
+    private function updateLastClean($storeId)
     {
         $this->configWriter->save(
             self::XML_CONFIG_LAST_CLEAN,
-            $this->localeDate->formatDate()
+            $this->localeDate->formatDate(),
+            ScopeInterface::SCOPE_STORE,
+            $storeId
         );
     }
 }

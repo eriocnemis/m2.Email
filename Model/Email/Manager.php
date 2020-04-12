@@ -79,7 +79,7 @@ class Manager
      */
     public function open(Storage $storage)
     {
-        if ($this->isLogEnabled()) {
+        if ($this->isLogEnabled($storage->getStoreId())) {
             $this->timer->start();
             $this->email = $this->converter->convert($storage);
             $this->email->save();
@@ -89,15 +89,16 @@ class Manager
     /**
      * Delete expire email
      *
+     * @param string $storeId
      * @return void
      */
-    public function deleteExpire()
+    public function deleteExpire($storeId)
     {
-        if ($this->helper->isCleanEnabled()) {
+        if ($this->helper->isCleanEnabled($storeId)) {
             $collection = $this->collectionFactory->create();
             $collection->addExpireDateFilter(
-                $this->helper->getDays()
-            )->walk('delete');
+                $this->helper->getDays($storeId)
+            )->addStoreIdFilter($storeId)->walk('delete');
         }
     }
 
