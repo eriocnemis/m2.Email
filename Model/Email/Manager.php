@@ -79,7 +79,7 @@ class Manager
      */
     public function open(Storage $storage)
     {
-        if ($this->isLogEnabled($storage->getStoreId())) {
+        if ($this->helper->isLogEnabled($storage->getStoreId())) {
             $this->timer->start();
             $this->email = $this->converter->convert($storage);
             $this->email->save();
@@ -131,16 +131,5 @@ class Manager
             }
             $this->email->save();
         }
-    }
-
-    /**
-     * Check log functionality should be enabled
-     *
-     * @param string $storeId
-     * @return bool
-     */
-    protected function isLogEnabled($storeId = null)
-    {
-        return $this->helper->isLogEnabled($storeId);
     }
 }
