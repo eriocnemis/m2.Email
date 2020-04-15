@@ -46,9 +46,7 @@ class Button extends Field
         $data = $element->getOriginalData();
         $this->addData([
             'button_label' => __($data['button_label']),
-            'html_id' => $element->getHtmlId(),
-            'ajax_url' => $this->_urlBuilder->getUrl($data['button_url']),
-            'html_result_id' => 'smtp_connection_test',
+            'html_id' => $element->getHtmlId()
         ]);
         return $this->_toHtml();
     }
