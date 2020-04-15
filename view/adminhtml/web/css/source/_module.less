@@ -69,3 +69,17 @@
         background-color: gray;
     }
 }
+
+.eriocnemis-email-actions {
+    .send-success {
+        &:extend(.admin__field-error);
+        background: #d5f5e3;
+        border: 1px solid green;
+        margin: 0 0 1.0rem 0;
+    }
+
+    .send-error {
+        &:extend(.admin__field-error);
+        margin: 0 0 1.0rem 0;
+    }
+}

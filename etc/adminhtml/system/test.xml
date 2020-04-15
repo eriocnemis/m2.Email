@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<include xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_include.xsd">
+    <!-- test setting -->
+    <field id="to" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Send To</label>
+    </field>
+    <field id="test" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+        <button_label>Test Connection</button_label>
+        <button_url>adminhtml/eriocnemis_email/test</button_url>
+        <frontend_model>Eriocnemis\Email\Block\Adminhtml\System\Config\Form\Field\Button</frontend_model>
+        <depends>
+            <field id="transport">smtp</field>
+        </depends>
+    </field>
+    <field id="send" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+        <button_label>Send Test Email</button_label>
+        <button_url>adminhtml/eriocnemis_email/send</button_url>
+        <frontend_model>Eriocnemis\Email\Block\Adminhtml\System\Config\Form\Field\Button</frontend_model>
+        <depends>
+            <field id="transport" separator=",">sendmail,smtp</field>
+        </depends>
+    </field>
+</include>

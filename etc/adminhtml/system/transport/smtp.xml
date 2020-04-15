@@ -14,4 +14,6 @@
     <include path="Eriocnemis_Email::system/transport/smtp/auth.xml"/>
     <!-- include return path setting -->
     <include path="Eriocnemis_Email::system/path.xml"/>
+    <!-- include test setting -->
+    <include path="Eriocnemis_Email::system/test.xml"/>
 </include>
