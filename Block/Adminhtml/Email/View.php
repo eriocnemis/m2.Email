@@ -130,7 +130,7 @@ class View extends Container
      */
     public function getRecipient()
     {
-        return preg_replace_callback(
+        return (string)preg_replace_callback(
             '#\(([^()]*)\)#iDs',
             function ($matches) {
                 if (filter_var($matches[1], FILTER_VALIDATE_EMAIL)) {
