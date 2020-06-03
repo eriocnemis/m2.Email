@@ -1,0 +1,21 @@
+<!--
+/**
+ * Copyright © Eriocnemis, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "%store_name:  New test email for %transport transport" store_name=$store.getFrontendName()  transport=$transport|escape|nl2br}} @-->
+<!--@vars {
+"var store_name":"Store Name"
+"var sender":"Sender Name and Email"
+"var transport":"Email Transport Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<h1>{{trans "New test email for %transport transport" transport=$transport|escape|nl2br}}</h1>
+<p>{{trans "Now You can use %transport to send out emails from the %sender for the store %store_name." transport=$transport sender=$sender store_name=$store.getFrontendName()|escape|nl2br}}</p>
+<p>{{trans "Remember to save configuration settings."}}</p>
+<p>{{trans "Regards, Eriocnemis team"}}</p>
+
+{{template config_path="design/email/footer_template"}}

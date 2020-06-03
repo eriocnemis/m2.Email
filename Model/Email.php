@@ -12,14 +12,16 @@ use Eriocnemis\Email\Model\ResourceModel\Email as EmailResource;
 /**
  * Email model
  *
- * @method Email setTo(string $email)
- * @method string getTo()
+ * @method Email setRecipient(string $email)
+ * @method string getRecipient()
  * @method Email setCc(string $cc)
  * @method string getCc()
  * @method Email setBcc(string $bcc)
  * @method string getBcc()
- * @method Email setFrom(string $from)
- * @method string getFrom()
+ * @method Email setSender(string $email)
+ * @method string getSender()
+ * @method Email setOriginal(string $message)
+ * @method string getOriginal()
  * @method Email setReplyTo(string $replyTo)
  * @method string getReplyTo()
  * @method Email setSubject(string $subject)
@@ -73,7 +75,7 @@ class Email extends AbstractModel implements IdentityInterface
      * Model cache tag for clear cache in after save and after delete
      * When you use true - all cache will be clean
      *
-     * @var string|array|bool
+     * @var string
      */
     protected $_cacheTag = self::CACHE_TAG;
 

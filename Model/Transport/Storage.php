@@ -105,9 +105,16 @@ class Storage
     /**
      * Email original message
      *
-     * @var string
+     * @var string|null
      */
     private $original;
+
+    /**
+     * Transport config
+     *
+     * @var string[]
+     */
+    private $config = [];
 
     /**
      * Initialize storage
@@ -118,6 +125,19 @@ class Storage
         ScopeConfigInterface $scopeConfig
     ) {
         $this->scopeConfig = $scopeConfig;
+    }
+
+    /**
+     * Set transport config
+     *
+     * @param string[] $config
+     * @return $this
+     */
+    public function setConfig(array $config)
+    {
+        $this->config = $config;
+
+        return $this;
     }
 
     /**
@@ -271,7 +291,7 @@ class Storage
     /**
      * Set sender address
      *
-     * @param array|string $address
+     * @param string[]|string $address
      * @param string $name
      * @return $this
      */
@@ -298,7 +318,7 @@ class Storage
     /**
      * Add recipient address
      *
-     * @param array|string $address
+     * @param string[]|string $address
      * @param string $name
      * @return $this
      */
@@ -322,7 +342,7 @@ class Storage
     /**
      * Add cc address
      *
-     * @param array|string $address
+     * @param string[]|string $address
      * @param string $name
      * @return $this
      */
@@ -346,12 +366,13 @@ class Storage
     /**
      * Add bcc address
      *
-     * @param array|string $address
+     * @param string[]|string $address
+     * @param string $name
      * @return $this
      */
-    public function addBcc($address)
+    public function addBcc($address, $name = '')
     {
-        $this->bcc += $this->prepareAddress($address);
+        $this->bcc += $this->prepareAddress($address, $name);
 
         return $this;
     }
@@ -370,6 +391,7 @@ class Storage
      * Set reply to address
      *
      * @param string $address
+     * @param string $name
      * @return $this
      */
     public function setReplyTo($address, $name = null)
@@ -405,7 +427,7 @@ class Storage
     /**
      * Retrieve original message
      *
-     * @return string
+     * @return string|null
      */
     public function getOriginal()
     {
@@ -421,6 +443,9 @@ class Storage
     public function getConfigValue($path)
     {
         $path = str_replace('{{IDENTITY}}', $this->getEmailIdentity(), $path);
+        if (isset($this->config[$path])) {
+            return $this->config[$path];
+        }
         return $this->scopeConfig
             ->getValue($path, ScopeInterface::SCOPE_STORE, $this->getStoreId());
     }
@@ -440,7 +465,7 @@ class Storage
     /**
      * Prepare address
      *
-     * @param array|string $address
+     * @param string[]|string $address
      * @param string $name
      * @return string[]
      */
@@ -458,7 +483,7 @@ class Storage
     /**
      * Prepare addresses
      *
-     * @param array $addresses
+     * @param string[] $addresses
      * @return string[]
      */
     private function prepareAddresses(array $addresses)
@@ -493,6 +518,7 @@ class Storage
         $this->bcc = [];
         $this->replyTo = '';
         $this->original = null;
+        $this->config = [];
 
         return $this;
     }

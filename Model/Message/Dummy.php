@@ -96,9 +96,9 @@ class Dummy implements MessageInterface
     public function isDisplayed()
     {
         $identities = [];
-        /** @var $section \Magento\Config\Model\Config\Structure\Element\Section */
+        /** @var \Magento\Config\Model\Config\Structure\Element\Section $section */
         $section = $this->configStructure->getElement('trans_email');
-        /** @var $group \Magento\Config\Model\Config\Structure\Element\Group */
+        /** @var \Magento\Config\Model\Config\Structure\Element\Group $group */
         foreach ($section->getChildren() as $group) {
             $identities[] = $group->getId();
         }
@@ -108,7 +108,10 @@ class Dummy implements MessageInterface
                 $path = str_replace('{{IDENTITY}}', $identity, self::XML_CONFIG_TRANSPORT);
                 $name = $this->scopeConfig->getValue($path, ScopeInterface::SCOPE_STORE, $store->getId());
                 if ($this->config->isDummy($name)) {
-                    $this->transport[$name] = $this->config->getLabel($name);
+                    $label = $this->config->getLabel($name);
+                    if (null !== $label) {
+                        $this->transport[$name] = $label;
+                    }
                 }
             }
         }

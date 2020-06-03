@@ -6,8 +6,8 @@
 namespace Eriocnemis\Email\Model\Transport;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\Directory\WriteInterface;
+use Magento\Framework\Filesystem;
 
 /**
  * Email zend file transport
@@ -68,7 +68,7 @@ class File extends TransportAbstract
     /**
      * Retrieve transport config
      *
-     * @return array
+     * @return mixed[]
      */
     protected function getConfig()
     {
@@ -81,7 +81,7 @@ class File extends TransportAbstract
     /**
      * Retrieve file transport config options
      *
-     * @return array
+     * @return mixed[]
      */
     private function getOptions()
     {
@@ -113,10 +113,10 @@ class File extends TransportAbstract
     {
         return sprintf(
             '%s_%u_%u.%s',
-            trim($this->storage->getConfigValue(self::XML_CONFIG_PREFIX)),
+            trim($this->getConfigValue(self::XML_CONFIG_PREFIX)),
             time(),
             random_int(1, PHP_INT_MAX),
-            trim($this->storage->getConfigValue(self::XML_CONFIG_EXTENSION), '.')
+            trim($this->getConfigValue(self::XML_CONFIG_EXTENSION), '.')
         );
     }
 
@@ -143,7 +143,7 @@ class File extends TransportAbstract
         return str_replace(
             ['{{IDENTITY}}', '{{STORE}}'],
             [$this->storage->getEmailIdentity(), $this->storage->getStoreId()],
-            $this->storage->getConfigValue(self::XML_CONFIG_PATH)
+            $this->getConfigValue(self::XML_CONFIG_PATH)
         );
     }
 

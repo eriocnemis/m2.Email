@@ -48,7 +48,7 @@ class Smtp extends TransportAbstract
     /**
      * Retrieve transport config
      *
-     * @return array
+     * @return mixed[]
      */
     protected function getConfig()
     {
@@ -61,28 +61,28 @@ class Smtp extends TransportAbstract
     /**
      * Retrieve transport connection config
      *
-     * @return array
+     * @return mixed[]
      */
     private function getConnectionConfig()
     {
         return [
-            'ssl' => $this->storage->getConfigValue(self::XML_CONFIG_SSL),
-            'username' => $this->storage->getConfigValue(self::XML_CONFIG_USER),
-            'password' => $this->storage->getConfigValue(self::XML_CONFIG_PASS)
+            'ssl' => $this->getConfigValue(self::XML_CONFIG_SSL),
+            'username' => $this->getConfigValue(self::XML_CONFIG_USER),
+            'password' => $this->getConfigValue(self::XML_CONFIG_PASS)
         ];
     }
 
     /**
      * Retrieve file transport config options
      *
-     * @return array
+     * @return mixed[]
      */
     private function getOptions()
     {
         return [
-            'host' => $this->storage->getConfigValue(self::XML_CONFIG_HOST),
-            'port' => $this->storage->getConfigValue(self::XML_CONFIG_PORT),
-            'connection_class' => $this->storage->getConfigValue(self::XML_CONFIG_AUTH),
+            'host' => $this->getConfigValue(self::XML_CONFIG_HOST),
+            'port' => $this->getConfigValue(self::XML_CONFIG_PORT),
+            'connection_class' => $this->getConfigValue(self::XML_CONFIG_AUTH),
             'connection_config' => $this->getConnectionConfig()
         ];
     }

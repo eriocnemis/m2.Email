@@ -35,7 +35,7 @@ class TransportBuilderPlugin
      * Set mail from address by scopeId
      *
      * @param Subject $subject
-     * @param string|array $from
+     * @param string|string[] $from
      * @param string|int $scopeId
      * @return null
      */
@@ -65,7 +65,7 @@ class TransportBuilderPlugin
      * Add to address
      *
      * @param Subject $subject
-     * @param array|string $address
+     * @param string[]|string $address
      * @param string $name
      * @return null
      */
@@ -80,7 +80,7 @@ class TransportBuilderPlugin
      * Add cc address
      *
      * @param Subject $subject
-     * @param array|string $address
+     * @param string[]|string $address
      * @param string $name
      * @return null
      */
@@ -95,7 +95,7 @@ class TransportBuilderPlugin
      * Add bcc address
      *
      * @param Subject $subject
-     * @param array|string $address
+     * @param string[]|string $address
      * @param string $name
      * @return null
      */
@@ -110,7 +110,7 @@ class TransportBuilderPlugin
      * Set reply to address
      *
      * @param Subject $subject
-     * @param array|string $address
+     * @param string $address
      * @param string $name
      * @return null
      */
@@ -125,7 +125,7 @@ class TransportBuilderPlugin
      * Set from address
      *
      * @param Subject $subject
-     * @param string|array $from
+     * @param string|string[] $from
      * @return null
      */
     public function beforeSetFrom(Subject $subject, $from)
@@ -139,7 +139,7 @@ class TransportBuilderPlugin
      * Set template options
      *
      * @param Subject $subject
-     * @param array $from
+     * @param string[] $templateOptions
      * @return null
      */
     public function beforeSetTemplateOptions(Subject $subject, $templateOptions)

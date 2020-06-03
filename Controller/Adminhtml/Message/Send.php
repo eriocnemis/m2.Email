@@ -5,11 +5,13 @@
  */
 namespace Eriocnemis\Email\Controller\Adminhtml\Message;
 
-//use Magento\Framework\Exception\LocalizedException;
+use Psr\Log\LoggerInterface;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Exception\MailException;
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\App\Action;
-use Psr\Log\LoggerInterface;
+use Eriocnemis\Email\Model\Email\Extractor;
+use Eriocnemis\Email\Model\Email\Sender;
 
 /**
  * Message send controller
@@ -28,28 +30,48 @@ class Send extends Action
      *
      * @var JsonFactory
      */
-    protected $resultJsonFactory;
+    private $resultJsonFactory;
+
+    /**
+     * Email sender
+     *
+     * @var Sender
+     */
+    private $sender;
+
+    /**
+     * Test email extractor
+     *
+     * @var Extractor
+     */
+    private $extractor;
 
     /**
      * Logger
      *
      * @var LoggerInterface
      */
-    protected $logger;
+    private $logger;
 
     /**
      * Initialize controller
      *
      * @param Context $context
      * @param JsonFactory $resultJsonFactory
+     * @param Extractor $extractor
+     * @param Sender $sender
      * @param LoggerInterface $logger
      */
     public function __construct(
         Context $context,
         JsonFactory $resultJsonFactory,
+        Extractor $extractor,
+        Sender $sender,
         LoggerInterface $logger
     ) {
         $this->resultJsonFactory = $resultJsonFactory;
+        $this->extractor = $extractor;
+        $this->sender = $sender;
         $this->logger = $logger;
 
         parent::__construct(
@@ -69,11 +91,26 @@ class Send extends Action
             return;
         }
 
-        /** @var \Magento\Framework\Controller\Result\Json $resultJson */
-        $resultJson = $this->resultJsonFactory->create();
-        return $resultJson->setData([
-            'error' => false,
-            'message' => 'Test Message',
-        ]);
+        $result = ['error' => true];
+        try {
+            $this->extractor->extract($this->getRequest());
+            $this->sender->send();
+
+            $result = [
+                'error' => false,
+                'message' => __('Sent successfully! Please check your email box.')
+            ];
+        } catch (MailException $e) {
+            $result['message'] = $e->getMessage();
+        } catch (\Exception $e) {
+            $this->logger->critical($e);
+            $result['message'] = __(
+                'We can\'t send the email right now. Please review the log and try again.'
+            );
+        }
+
+        /** @var \Magento\Framework\Controller\Result\Json $json */
+        $json = $this->resultJsonFactory->create();
+        return $json->setData($result);
     }
 }

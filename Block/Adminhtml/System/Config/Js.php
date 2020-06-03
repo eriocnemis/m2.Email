@@ -26,7 +26,7 @@ class Js extends Template
      *
      * @param Context $context
      * @param EncoderInterface $jsonEncoder
-     * @param array $data
+     * @param mixed[] $data
      */
     public function __construct(
         Context $context,

@@ -35,7 +35,7 @@ class SenderResolverPlugin
      * Set mail from address by scopeId
      *
      * @param Subject $subject
-     * @param string|array $sender
+     * @param string|mixed[] $sender
      * @param string|int $scopeId
      * @return null
      */
@@ -51,7 +51,7 @@ class SenderResolverPlugin
      * Set mail from address by scopeId
      *
      * @param Subject $subject
-     * @param array $result
+     * @param mixed[] $result
      * @return string[]
      */
     public function afterResolve(Subject $subject, $result)

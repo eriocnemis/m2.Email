@@ -13,7 +13,7 @@
     </field>
     <field id="test" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
         <button_label>Test Connection</button_label>
-        <button_url>adminhtml/eriocnemis_email/test</button_url>
+        <!--<button_url>adminhtml/eriocnemis_email/test</button_url>-->
         <frontend_model>Eriocnemis\Email\Block\Adminhtml\System\Config\Form\Field\Button</frontend_model>
         <depends>
             <field id="transport">smtp</field>
@@ -21,7 +21,7 @@
     </field>
     <field id="send" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
         <button_label>Send Test Email</button_label>
-        <button_url>adminhtml/eriocnemis_email/send</button_url>
+        <!--<button_url>adminhtml/eriocnemis_email/send</button_url>-->
         <frontend_model>Eriocnemis\Email\Block\Adminhtml\System\Config\Form\Field\Button</frontend_model>
         <depends>
             <field id="transport" separator=",">sendmail,smtp</field>

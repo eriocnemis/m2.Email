@@ -15,8 +15,8 @@ class Duration extends Column
     /**
      * Prepare data source
      *
-     * @param array $dataSource
-     * @return array
+     * @param mixed[] $dataSource
+     * @return mixed[]
      */
     public function prepareDataSource(array $dataSource)
     {

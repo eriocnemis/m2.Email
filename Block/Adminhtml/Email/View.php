@@ -47,7 +47,7 @@ class View extends Container
      * @param Registry $coreRegistry
      * @param StatusSource $statusSource
      * @param TransportSource $transportSource
-     * @param array $data
+     * @param mixed[] $data
      */
     public function __construct(
         Context $context,

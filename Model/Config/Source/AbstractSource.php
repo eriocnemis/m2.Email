@@ -15,7 +15,7 @@ abstract class AbstractSource implements ArrayInterface
     /**
      * Retrieve config options
      *
-     * @return array
+     * @return mixed[]
      */
     public function toOptionArray()
     {
@@ -29,7 +29,7 @@ abstract class AbstractSource implements ArrayInterface
     /**
      * Retrieve options in key-value format
      *
-     * @return array
+     * @return mixed[]
      */
     abstract public function toArray();
 }

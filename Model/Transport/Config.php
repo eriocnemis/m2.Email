@@ -13,14 +13,14 @@ class Config
     /**
      * Config list
      *
-     * @var array
+     * @var mixed[]
      */
     private $config;
 
     /**
      * Validate format of forms configuration array
      *
-     * @param array $config
+     * @param mixed[] $config
      * @throws \InvalidArgumentException
      */
     public function __construct(array $config)
@@ -42,7 +42,7 @@ class Config
     /**
      * Retrieve unique names of all available transports
      *
-     * @return array
+     * @return mixed[]
      */
     public function getAvailable()
     {

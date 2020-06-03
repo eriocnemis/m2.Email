@@ -15,7 +15,7 @@ class Transport extends AbstractSource
     /**
      * Source options
      *
-     * @var array
+     * @var mixed[]
      */
     private $options;
 
@@ -40,7 +40,7 @@ class Transport extends AbstractSource
     /**
      * Retrieve options in key-value format
      *
-     * @return array
+     * @return mixed[]
      */
     public function toArray()
     {

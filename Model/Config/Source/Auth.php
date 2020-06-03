@@ -13,7 +13,7 @@ class Auth extends AbstractSource
     /**
      * Retrieve options in key-value format
      *
-     * @return array
+     * @return mixed[]
      */
     public function toArray()
     {

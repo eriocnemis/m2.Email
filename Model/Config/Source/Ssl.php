@@ -13,7 +13,7 @@ class Ssl extends AbstractSource
     /**
      * Retrieve options in key-value format
      *
-     * @return array
+     * @return mixed[]
      */
     public function toArray()
     {

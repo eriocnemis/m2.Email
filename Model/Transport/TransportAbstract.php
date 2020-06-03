@@ -71,7 +71,18 @@ abstract class TransportAbstract implements TransportInterface
     /**
      * Retrieve transport config
      *
-     * @return array
+     * @return mixed[]
      */
     abstract protected function getConfig();
+
+    /**
+     * Retrieve store configuration value
+     *
+     * @param string $path
+     * @return string
+     */
+    protected function getConfigValue($path)
+    {
+        return $this->storage->getConfigValue($path);
+    }
 }

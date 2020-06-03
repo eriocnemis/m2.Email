@@ -18,7 +18,7 @@ class InMemory extends TransportAbstract
     /**
      * Retrieve transport config
      *
-     * @return array
+     * @return mixed[]
      */
     protected function getConfig()
     {
